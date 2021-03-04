@@ -48,3 +48,11 @@
     color: #000 !important;
     border: 1px solid #ccc;
 }
+
+.content-feature {
+    display: flex;
+}
+
+.input1 {
+    width: 240px;
+}

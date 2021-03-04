@@ -7,6 +7,7 @@
 @import './view/lateInearlyOut.css';
 @import './base/_input.css';
 @import './base/_grid.css';
+@import './base/_filter.css';
 :root {
     --primary: #ec5504;
     --primary-bg: #ffede2;

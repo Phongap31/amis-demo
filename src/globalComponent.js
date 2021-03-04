@@ -8,3 +8,7 @@ import msMenu from './components/ms-menu/msMenu.vue';
 Vue.component(msMenu.name, msMenu)
 import msDropdownMenu from './components/dropdownMenu/msDropdownMenu.vue';
 Vue.component(msDropdownMenu.name, msDropdownMenu)
+import msCustomeGrid from './components/customeGrid/msCustomeGrid.vue';
+Vue.component(msCustomeGrid.name, msCustomeGrid)
+import msInput from './components/input/msInput.vue';
+Vue.component(msInput.name, msInput)

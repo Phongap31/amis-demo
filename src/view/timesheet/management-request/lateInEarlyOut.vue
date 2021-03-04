@@ -9,14 +9,14 @@
         </div>
       </div>
       <div class="top-content-right">
-        <ms-input placeholder="Tìm kiếm" icon="search-icon" width="400px"></ms-input>
-        <ms-button class="btn-add" bgcolor="bg-color" icon="target-icon">Thêm</ms-button>
-        <ms-button class="btn-filter" bgcolor="bg-color-filter" icon="filter-icon"></ms-button>
+        <ms-input class="input1" placeholder="Tìm kiếm" icon="search-icon" width="400px"></ms-input>
+        <ms-button @toggleFilter="test()"  class="btn-add" bgcolor="bg-color" icon="target-icon">Thêm</ms-button>
+        <ms-button @toggleFilter="filterOpen = !filterOpen" class="btn-filter" bgcolor="bg-color-filter" icon="filter-icon"></ms-button>
       </div>
     </div>
     <div class="content-feature">
       <ms-grid></ms-grid>
-      <ms-filter></ms-filter>
+      <ms-filter :open="filterOpen"></ms-filter>
     </div>
   </div>
 </template>
@@ -27,7 +27,17 @@ import MsGrid from '@/components/grid/msGrid.vue';
 import msInput from '@/components/input/msInput.vue';
 export default {
   components: { msInput, MsButton, MsGrid, MsFilter },
- 
+  data() {
+    MsButton
+    return {
+      filterOpen: true,
+    }
+  },
+  methods: {
+    test(){
+      console.log('abc');
+    }
+  }
 };
 </script>
 <style>
