@@ -1,0 +1,50 @@
+.late-in-early-out {
+    /* margin-top: 15px; */
+    padding: 20px;
+}
+
+.top-content {
+    display: flex;
+    align-items: center;
+}
+
+.top-content-left {
+    display: flex;
+    align-items: center;
+}
+
+.content-status {
+    display: flex;
+}
+
+.top-content-right {
+    display: flex;
+    position: absolute;
+    right: 20px;
+}
+
+.content-left-text {
+    font-family: Roboto, Helvetica, Arial, sans-serif;
+    font-size: 20px;
+    font-weight: 600;
+    margin-right: 40px;
+}
+
+.status-text {
+    color: rgb(170, 168, 168);
+    margin-right: 5px;
+}
+
+.btn-add {
+    margin: 0 5px;
+}
+
+.bg-color {
+    background: #FA6000;
+}
+
+.bg-color-filter {
+    background-color: #fff;
+    color: #000 !important;
+    border: 1px solid #ccc;
+}

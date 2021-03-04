@@ -1,0 +1,8 @@
+.fa-chevron-down {
+    margin-left: 2px;
+    visibility: hidden;
+}
+
+.dropdown:hover .fa-chevron-down {
+    visibility: visible;
+}

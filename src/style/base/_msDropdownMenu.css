@@ -1,0 +1,13 @@
+.dropdown-menu {
+    position: absolute;
+    background: chocolate;
+    width: 30px;
+    height: auto;
+    right: 0;
+    top: 100%;
+    color: red;
+}
+
+.isHide {
+    display: none;
+}
