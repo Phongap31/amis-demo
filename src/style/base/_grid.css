@@ -1,5 +1,5 @@
 .ms-grid {
-    margin-top: 20px;
+    margin-top: 25px;
 }
 
 #gridContainer {
@@ -31,15 +31,15 @@ td {
 .custome-footer {
     display: flex;
     position: absolute;
-    bottom: 10px;
+    bottom: 20px;
     align-items: center;
-    padding: 0 10px;
+    padding: 0 5px;
     width: calc(100% - 40px);
     justify-content: space-between;
 }
 
 .btn-apply {
-    padding: 0 25px;
+    padding: 0 31px;
 }
 
 .custome-body {
@@ -137,12 +137,13 @@ td {
 
 .checkmark {
     position: absolute;
-    top: 7px;
+    top: 6px;
     left: 2px;
-    height: 20px;
-    width: 20px;
+    height: 18px;
+    width: 18px;
     background-color: #eee;
     border-radius: 2px;
+    border: 2px solid #bbb;
 }
 
 
@@ -179,8 +180,8 @@ td {
 /* Style the checkmark/indicator */
 
 .container .checkmark:after {
-    left: 8px;
-    top: 4px;
+    left: 5px;
+    top: 1px;
     width: 5px;
     height: 10px;
     border: solid white;
@@ -188,4 +189,9 @@ td {
     -webkit-transform: rotate(45deg);
     -ms-transform: rotate(45deg);
     transform: rotate(45deg);
+}
+
+.dx-checkbox-checked .dx-checkbox-icon::before {
+    background-color: #FA6000;
+    color: #fff;
 }

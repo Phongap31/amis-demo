@@ -12,3 +12,5 @@ import msCustomeGrid from './components/customeGrid/msCustomeGrid.vue';
 Vue.component(msCustomeGrid.name, msCustomeGrid)
 import msInput from './components/input/msInput.vue';
 Vue.component(msInput.name, msInput)
+import msItem from './components/dropdown/msItem.vue';
+Vue.component(msItem.name, msItem)

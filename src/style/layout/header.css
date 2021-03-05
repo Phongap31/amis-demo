@@ -1,7 +1,7 @@
 .header {
     display: flex;
     background: transparent;
-    height: 54px;
+    height: 56px;
     margin: 0;
 }
 
@@ -23,11 +23,6 @@
     right: 20px;
 }
 
-.logo-img {
-    margin-right: 10px;
-    margin-top: 3px;
-}
-
 .brand-text {
     font-weight: 750;
     font-size: 18px;
@@ -37,7 +32,7 @@
     text-decoration: none;
     margin-right: 20px;
     color: #000 !important;
-    padding: 11px 20px;
+    padding: 10px 15px;
     cursor: pointer;
     outline: none;
 }
@@ -55,7 +50,7 @@
 }
 
 .nav-item:first-child {
-    margin-left: 15px;
+    margin-left: 5px;
 }
 
 .version-app {

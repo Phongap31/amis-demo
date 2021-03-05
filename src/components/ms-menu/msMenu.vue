@@ -2,7 +2,7 @@
     <ul class="ms-menu">
         <template v-for="(item,index) in menuItems">
             <router-link class="nav-item" v-if="!item.ishasDropdown" :to="item.url" :key="index">{{item.name}}</router-link>  
-            <ms-dropdown class="nav-item" v-if="item.ishasDropdown" :key="index">{{item.name}}</ms-dropdown>
+            <ms-dropdown class="nav-item" v-if="item.ishasDropdown" :dropdownItems="item.dropdownItems" :id="item.id" :key="index">{{item.name}}</ms-dropdown>
         </template>
     </ul>
 </template>
@@ -11,7 +11,7 @@
 export default {
     name: 'msMenu',
     props:{
-         menuItems: {
+        menuItems: {
             type: Array,
             default: () => []
         },

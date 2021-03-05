@@ -3,7 +3,7 @@
     <div class="filter-content">
       <div class="header-filter">
         <div class="header-filter-text">Bộ lọc</div>
-        <div @click="$emit('toggleFilter')" class="header-close">x</div>
+        <div @click="$emit('buttonEvent')" class="header-close"><i class="fas fa-times"></i></div>
       </div>
       <div class="abc">
         <ms-input
@@ -14,16 +14,16 @@
       </div>
       <div class="body-filter">
           <div v-for="(title, index) in titles" :key="index">
-          <label class="container"
-            >{{title}}
-            <input type="checkbox" checked="checked" />
-            <span class="checkmark"></span>
+          <label class="container-filter"
+            >{{title.Caption}}
+            <input type="checkbox" />
+            <span class="checkmark-filter"></span>
           </label>
         </div>
       </div>
       <div class="footer-filter">
-        <ms-button bgcolor="bg-color-filter">Bỏ lọc</ms-button>
-        <ms-button bgcolor="bg-color">Áp dụng</ms-button>
+        <ms-button class="cancle-filter" bgcolor="bg-color-filter">Bỏ lọc</ms-button>
+        <ms-button class="apply-filter" bgcolor="bg-color">Áp dụng</ms-button>
       </div>
     </div>
   </div>

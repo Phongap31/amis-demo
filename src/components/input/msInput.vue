@@ -1,7 +1,7 @@
 <template>
-    <div :width="width" class="ms-input">
+    <div  class="ms-input">
         <div v-if="icon" :class="icon"></div>
-        <input :type="type" :placeholder="placeholder" >
+        <input :width="width" ref="input" :type="type" :placeholder="placeholder" >
     </div>
 </template>
 

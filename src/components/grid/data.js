@@ -206,15 +206,39 @@ const employees = [{
     }
 ];
 
-const titles = [
-    'Người duyệt',
-    'Ngày lập',
-    'Đi muộn đầu ca',
-    'Về sớm giữa ca',
-    'Vào muộn giữa ca',
-    'Về sớm cuối ca',
-    'Áp dụng cho',
-    'Trạng thái'
+const titles = [{
+        Caption: "Người duyệt",
+        FieldName: "LastName",
+        HeaderTemplate: "FirstName"
+    },
+    {
+        Caption: "Ngày lập",
+        FieldName: "HireDate"
+    },
+    {
+        Caption: "Đi muộn đầu ca",
+        FieldName: "Position"
+    },
+    {
+        Caption: "Về sớm giữa ca",
+        FieldName: "City"
+    },
+    {
+        Caption: "Vào muộn giữa ca",
+        FieldName: "Address"
+    },
+    {
+        Caption: "Về sớm cuối ca",
+        FieldName: "BirthDate"
+    },
+    {
+        Caption: "Áp dụng cho",
+        FieldName: "HomePhone"
+    },
+    {
+        Caption: "Trạng thái",
+        FieldName: "State"
+    }
 ]
 
 export default {

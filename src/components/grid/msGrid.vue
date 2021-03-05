@@ -5,27 +5,18 @@
       :data-source="employees"
       :allow-column-reordering="true"
       :allow-column-resizing="true"
-      :column-auto-width="true"
       :show-borders="true"
       :show-row-lines="true"
       :show-column-lines="false"
-      height="calc(100vh - 150px)"
-      width="auto"
+      height="calc(100vh - 165px)"
       :onContentReady="onContentReady"
     >
-      <!-- <DxColumnChooser
-      id="columnChooser"
-        :enabled="true"
-        mode="select"
-        height="400"
-        title="Tùy chỉnh cột"
-        allowSearch="true"
-      /> -->
-
+      <DxSelection :deferred="false" mode="multiple" :show-column-lines="false"/>
       <DxColumnFixing :enabled="true" />
-      <!-- <DxPaging :page-size="10"/> -->
+      <DxPaging :page-size="5"/>
       <DxColumn
-        :height="50"
+      :width="50"
+      :fixed="true"
         alignment="center"
         header-cell-template="icon-header"
       />
@@ -33,42 +24,26 @@
         <div id="link4" @click="test()" class="custome-icon"></div>
       </template>
 
-      <DxSelection :deferred="false" mode="multiple" :visible-index="2" />
-      <!-- <DxColumn
-        :height="50"
-        header-cell-template="title-header"
-      /> -->
-      <!-- <template #title-header>
-        <div style="color: #000; ">
-          Người duyệt
-        </div>
-      </template> -->
+      
       <DxColumn
-        data-field="BirthDate"
-        data-type="date"
-        caption="Ngày lập"
+      v-for="(column,index) in titles" :key="index"
+      :show-borders="false"
+
         :height="50"
+        :caption="column.Caption"
+        :data-field="column.FieldName"
       />
-      <DxColumn
-        data-field="HireDate"
-        data-type="date"
-        caption="Đi muộn đầu ca"
-        :height="50"
-      />
-      <DxColumn data-field="Position" caption="Về sớm giữa ca" :height="50" />
-      <DxColumn
-        :width="230"
-        data-field="Address"
-        caption="Vào muộn giữa ca"
-        :height="50"
-      />
-      <DxColumn data-field="City" caption="Về sớm cuối ca" :height="50" />
-      <DxColumn data-field="State" caption="Áp dụng cho" :height="50" />
-      <DxColumn data-field="Zipcode" caption="Trạng thái" :height="50" />
+
+      <!-- <template #custom-header="data">
+         <slot :name="data.data.column.dataField" :data="data"></slot>
+        </template> -->
+       
+        
     </DxDataGrid>
     <DxPopover
       :width="255"
       :height="450"
+      :show-borders="true"
       :visible="isCustome"
       target="#link4"
       position="bottom"
@@ -76,15 +51,15 @@
     >
       <div class="custome-header">
         <div class="c-column-text">Tùy chỉnh cột</div>
-        <div class="c-column-close">x</div>
+        <div class="c-column-close"><i class="fas fa-times"></i></div>
       </div>
       <div>
-        <ms-input placeholder=" Tìm kiếm"></ms-input>
+        <ms-input placeholder="Tìm kiếm"></ms-input>
       </div>
       <div class="custome-body">
         <div class="custome-element" v-for="(title, index) in titles" :key="index">
           <label class="container"
-            >{{title}}
+            >{{title.Caption}}
             <input type="checkbox" checked="checked" />
             <span class="checkmark"></span>
           </label>
@@ -145,14 +120,11 @@ export default {
     };
   },
   methods: {
-    onContentReady(e) {
-      if (e.component.shouldSkipNextReady) {
-        e.component.shouldSkipNextReady = false;
-      } else {
-        e.component.shouldSkipNextReady = true;
-        e.component.columnOption("command:select", "visibleIndex", -1);
-        e.component.updateDimensions();
-      }
+    testdata(data){
+      debugger
+    },
+    onContentReady: e => {
+        e.component.columnOption("command:select", "visibleIndex", 0);
     },
     calculateCellValue(data) {
       return [data.Title, data.FirstName, data.LastName].join(" ");

@@ -1,6 +1,6 @@
 .late-in-early-out {
     /* margin-top: 15px; */
-    padding: 20px;
+    padding: 25px;
 }
 
 .top-content {
@@ -36,11 +36,11 @@
 }
 
 .btn-add {
-    margin: 0 5px;
+    margin: 0 10px;
 }
 
 .bg-color {
-    background: #FA6000;
+    background: var(--button-primary-normal-bg-color);
 }
 
 .bg-color-filter {
