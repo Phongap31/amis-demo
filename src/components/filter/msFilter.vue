@@ -3,7 +3,7 @@
     <div class="filter-content">
       <div class="header-filter">
         <div class="header-filter-text">Bộ lọc</div>
-        <div @click="$emit('buttonEvent')" class="header-close"><i class="fas fa-times"></i></div>
+        <div @click="closeFilter()" class="header-close"><i class="fas fa-times"></i></div>
       </div>
       <div class="abc">
         <ms-input
@@ -44,5 +44,10 @@ export default {
           titles: service.getTitles(),
       }
   },
+  methods: {
+    closeFilter(){
+      this.$emit('closeFilter', false)
+    }
+  }
 };
 </script>

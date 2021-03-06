@@ -97,6 +97,23 @@
     width: 250px;
 }
 
+div.dx-overlay-content.dx-popup-normal.dx-resizable {
+    z-index: 99999999999999 !important;
+}
+
+.ms-combobox:hover {
+    border-color: var(--input-hover-border-color);
+}
+
+.mx-datepicker:hover {
+    border-color: var(--input-hover-border-color);
+}
+
+.dx-texteditor.dx-state-focused.dx-editor-outlined,
+.mx-datepicker:focus {
+    border-color: var(--input-active-border-color) !important;
+}
+
 .dialog-footer {
     display: flex;
     width: 100%;
@@ -119,4 +136,12 @@
 
 .mx-datepicker-popup {
     z-index: 99999999;
+}
+
+.dx-texteditor-container:hover.dx-texteditor-buttons-container {
+    background-color: #fff !important;
+}
+
+.text-right .dx-texteditor-input {
+    text-align: right;
 }

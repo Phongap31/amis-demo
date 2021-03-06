@@ -7,12 +7,18 @@
       :allow-column-resizing="true"
       :show-borders="true"
       :show-row-lines="true"
+      :show-row-column="false"
       height="calc(100vh - 165px)"
       :onContentReady="onContentReady"
     >
       <DxSelection :deferred="false" mode="multiple"/>
-      <DxColumnFixing :enabled="true" />
-      <DxPaging :page-size="5"/>
+      <DxColumnFixing :enabled="false" />
+      <DxPaging :page-size="10"/>
+      <DxPager
+      :show-page-size-selector="true"
+      :allowed-page-sizes="pageSizes"
+      :show-info="true"
+    />
       <DxColumn
       :width="60"
       :fixed="true"
@@ -26,14 +32,19 @@
       
       <DxColumn
       v-for="(column,index) in titles" :key="index"
+      :width="200"
+      :height="80"
         :caption="column.Caption"
         :data-field="column.FieldName"
       />
 
-      <!-- <template #custom-header="data">
+      <template #custom-header="data">
          <slot :name="data.data.column.dataField" :data="data"></slot>
-        </template> -->
-       
+        </template>
+       <DxColumn 
+        :width="100"
+        caption="Actions"
+       />
         
     </DxDataGrid>
     <DxPopover
@@ -47,7 +58,7 @@
     >
       <div class="custome-header">
         <div class="c-column-text">Tùy chỉnh cột</div>
-        <div class="c-column-close"><i class="fas fa-times"></i></div>
+        <div @click="isCustome=false" class="c-column-close"><i class="fas fa-times"></i></div>
       </div>
       <div>
         <ms-input placeholder="Tìm kiếm"></ms-input>
@@ -77,6 +88,7 @@ import {
   DxColumnFixing,
   DxPaging,
   DxSelection,
+  DxPager
 } from "devextreme-vue/data-grid";
 import { DxPopover } from "devextreme-vue/popover";
 
@@ -91,12 +103,14 @@ export default {
     DxPaging,
     DxSelection,
     DxPopover,
+    DxPager
   },
   data() {
     return {
       employees: service.getEmployees(),
       titles: service.getTitles(),
       isCustome: false,
+      pageSizes: [5, 10, 50, 100],
       animationConfig: {
         show: {
           type: "pop",
@@ -129,7 +143,7 @@ export default {
       e.rowElement.style.height = "50px";
     },
     test() {
-      this.isCustome = true;
+      this.isCustome = !this.isCustome;
     },
   },
 };

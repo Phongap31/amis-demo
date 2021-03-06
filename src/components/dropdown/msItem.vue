@@ -21,7 +21,6 @@ export default {
   },
   methods: {
     doFunc() {
-      console.log(this.item.link);
       this.closeDropdown();
     },
   },
@@ -38,13 +37,16 @@ export default {
   text-decoration: none;
 }
 .item:hover {
-  background: #ddd;
+  background: var(--dropdown-item-hover);
   color: #000 !important;
   border-radius: 4px;
 }
 .link-item{
     text-decoration: none;
     padding: 0 5px;
-    color: rgba(0,0,0,0.7);
+    color: var(--black);
+}
+.link-item:hover{
+  color: red;
 }
 </style>

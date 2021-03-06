@@ -23,13 +23,24 @@
               <label for=""
                 >Người nộp đơn <span class="input-require">*</span></label
               >
-              <DxSelectBox class="ms-combobox" />
+              <DxSelectBox
+                class="ms-combobox"
+                placeholder=""
+                :search-enabled="true"
+                :data-source="products"
+                display-expr="value"
+                value-expr="id"
+              />
             </div>
             <div class="row-body">
               <label for=""
                 >Đơn vị công tác <span class="input-require">*</span></label
               >
-              <DxTextBox class="ms-combobox" :disabled="true" style="background: #bbb"/>
+              <DxTextBox
+                class="ms-combobox"
+                :disabled="true"
+                style="background: #bbb"
+              />
             </div>
             <div class="row-body">
               <label for=""
@@ -49,45 +60,103 @@
             </div>
             <div class="row-body" style="margin: 60px 0">
               <label for="">Áp dụng cho</label>
-              <DxSelectBox class="ms-combobox" style="height: 80px" />
+              <DxSelectBox
+                class="ms-combobox"
+                style="height: 80px"
+                placeholder="Áp dụng cho cả tuần"
+                :search-enabled="true"
+                :data-source="products"
+                display-expr="value"
+                value-expr="id"
+              />
             </div>
             <div class="row-body" style="margin: 90px 0">
               <label for=""
                 >Ca áp dụng <span class="input-require">*</span></label
               >
-              <DxSelectBox class="ms-combobox" style="height: 80px" />
+              <DxSelectBox
+                class="ms-combobox"
+                style="height: 80px"
+                placeholder=""
+                :search-enabled="true"
+                :data-source="products"
+                display-expr="value"
+                value-expr="id"
+              />
             </div>
             <div class="row-body" style="margin: 90px 0">
-              <label for="">Lý do đi muộn/về sớm <span class="input-require">*</span></label>
+              <label for=""
+                >Lý do đi muộn/về sớm
+                <span class="input-require">*</span></label
+              >
               <DxTextArea class="ms-combobox" style="height: 90px" />
             </div>
           </div>
           <div class="dialog-body-right">
             <div class="row-body">
               <label for="">Đi muộn đầu ca (phút)</label>
-              <DxNumberBox class="ms-combobox" format="#,##0.##" :value="0" :min="0" :show-spin-buttons="true" />
+              <DxNumberBox
+                class="ms-combobox text-right"
+                format="#,##0.##"
+                :value="0"
+                :min="0"
+                :show-spin-buttons="true"
+              />
             </div>
             <div class="row-body">
               <label for="">Về sớm giữa ca (phút)</label>
-              <DxNumberBox class="ms-combobox" format="#,##0.##" :value="0" :min="0" :show-spin-buttons="true" />
+              <DxNumberBox
+                class="ms-combobox text-right"
+                format="#,##0.##"
+                :value="0"
+                :min="0"
+                :show-spin-buttons="true"
+              />
             </div>
             <div class="row-body">
               <label for="">Đến muộn giữa ca (phút)</label>
-              <DxNumberBox class="ms-combobox" format="#,##0.##" :value="0" :min="0" :show-spin-buttons="true" />
+              <DxNumberBox
+                class="ms-combobox text-right"
+                format="#,##0.##"
+                :value="0"
+                :min="0"
+                :show-spin-buttons="true"
+              />
             </div>
             <div class="row-body">
               <label for="">Về sớm cuối ca (phút)</label>
-              <DxNumberBox class="ms-combobox" format="#,##0.##" :value="0" :min="0" :show-spin-buttons="true" />
+              <DxNumberBox
+                class="ms-combobox text-right"
+                format="#,##0.##"
+                :value="0"
+                :min="0"
+                :show-spin-buttons="true"
+              />
             </div>
             <div class="row-body">
               <label for=""
                 >Người duyệt <span class="input-require">*</span></label
               >
-              <DxSelectBox class="ms-combobox" />
+              <DxSelectBox
+                class="ms-combobox"
+                placeholder=""
+                :search-enabled="true"
+                :data-source="products"
+                display-expr="value"
+                value-expr="id"
+              />
             </div>
             <div class="row-body" style="margin: 60px 0">
               <label for="">Người liên quan</label>
-              <DxSelectBox class="ms-combobox" style="height: 80px" />
+              <DxSelectBox
+                class="ms-combobox"
+                style="height: 80px"
+                placeholder=""
+                :search-enabled="true"
+                :data-source="products"
+                display-expr="value"
+                value-expr="id"
+              />
             </div>
             <div class="row-body" style="margin: 90px 0 60px 0">
               <label for="">Ghi chú</label>
@@ -97,7 +166,14 @@
               <label for=""
                 >Trạng thái <span class="input-require">*</span></label
               >
-              <DxSelectBox class="ms-combobox" />
+              <DxSelectBox
+                class="ms-combobox"
+                placeholder=""
+                :search-enabled="true"
+                :data-source="products"
+                display-expr="value"
+                value-expr="id"
+              />
             </div>
           </div>
         </div>
@@ -118,14 +194,21 @@
 
 <script>
 import { DxNumberBox } from "devextreme-vue/number-box";
-import DxTextBox from 'devextreme-vue/text-box';
+import DxTextBox from "devextreme-vue/text-box";
 import DxTextArea from "devextreme-vue/text-area";
 import msInput from "../../../components/input/msInput.vue";
 import DxSelectBox from "devextreme-vue/select-box";
 import DatePicker from "vue2-datepicker";
 import "vue2-datepicker/index.css";
 export default {
-  components: { msInput,DxTextBox, DatePicker, DxSelectBox, DxTextArea, DxNumberBox },
+  components: {
+    msInput,
+    DxTextBox,
+    DatePicker,
+    DxSelectBox,
+    DxTextArea,
+    DxNumberBox,
+  },
   name: "lateInEarlyOutDetail",
   props: {
     ishide: {
@@ -139,7 +222,20 @@ export default {
   },
   data() {
     return {
-      products: null,
+      products: [
+        {
+          id: 1,
+          value: "value 1",
+        },
+        {
+          id: 2,
+          value: "value 2",
+        },
+        {
+          id: 3,
+          value: "value 3",
+        },
+      ],
       values: ["value1", "value2"],
       time: new Date(),
     };

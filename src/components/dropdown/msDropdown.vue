@@ -68,7 +68,7 @@ export default {
   width: fit-content;
 }
 .dropdown-list {
-  background: rgb(245, 241, 241);
+  background: var(--white);
   margin-top: 15px;
   position: absolute;
   z-index: 10;

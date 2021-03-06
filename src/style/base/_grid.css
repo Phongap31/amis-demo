@@ -1,13 +1,11 @@
 .ms-grid {
     margin-top: 25px;
+    width: 100%;
+    position: relative;
 }
 
 #gridContainer {
     border-radius: 4px;
-}
-
-td {
-    border-right: none !important;
 }
 
 .custome-header {
@@ -194,4 +192,31 @@ td {
 .dx-checkbox-checked .dx-checkbox-icon::before {
     background-color: #FA6000;
     color: #fff;
+}
+
+.dx-datagrid-rowsview .dx-row.dx-row-lines {
+    padding: 14px;
+}
+
+td {
+    border-right: none !important;
+    padding: 14px !important;
+}
+
+.dx-datagrid-headers .dx-datagrid-table .dx-row>td {
+    padding: 14px;
+    font-size: 14px !important;
+    font-weight: 700;
+}
+
+.dx-header-row>td>.dx-datagrid-text-content,
+.dx-datagrid-rowsview .dx-row.dx-row-lines>td {
+    font-size: 14px !important;
+    font-family: Roboto, Helvetica, Arial, sans-serif !important;
+}
+
+.dx-datagrid.dx-datagrid-borders>.dx-datagrid-pager {
+    /* margin-top: 1px; */
+    border: 1px solid #ddd;
+    border-top: none;
 }

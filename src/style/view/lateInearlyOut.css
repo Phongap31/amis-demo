@@ -35,6 +35,19 @@
     margin-right: 5px;
 }
 
+.status-dropdown {
+    border: none;
+    outline: none;
+    font-weight: 600;
+    font-size: 15px;
+    background-color: #eee;
+}
+
+.status-dropdown::after {
+    background-color: #fff;
+    border: none;
+}
+
 .btn-add {
     margin: 0 8px;
 }
@@ -51,6 +64,7 @@
 
 .content-feature {
     display: flex;
+    position: relative;
 }
 
 .input1 {
