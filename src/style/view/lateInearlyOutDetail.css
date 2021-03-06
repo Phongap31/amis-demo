@@ -76,12 +76,13 @@
 .dialog-body-left {
     width: 50%;
     position: relative;
+    margin-right: 20px;
 }
 
 .dialog-body-right {
     width: 50%;
     position: relative;
-    margin-left: 30px;
+    margin-left: 20px;
 }
 
 .row-body {
@@ -114,4 +115,8 @@
 
 .input-require {
     color: red;
+}
+
+.mx-datepicker-popup {
+    z-index: 99999999;
 }

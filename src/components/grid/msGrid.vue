@@ -7,15 +7,14 @@
       :allow-column-resizing="true"
       :show-borders="true"
       :show-row-lines="true"
-      :show-column-lines="false"
       height="calc(100vh - 165px)"
       :onContentReady="onContentReady"
     >
-      <DxSelection :deferred="false" mode="multiple" :show-column-lines="false"/>
+      <DxSelection :deferred="false" mode="multiple"/>
       <DxColumnFixing :enabled="true" />
       <DxPaging :page-size="5"/>
       <DxColumn
-      :width="50"
+      :width="60"
       :fixed="true"
         alignment="center"
         header-cell-template="icon-header"
@@ -27,9 +26,6 @@
       
       <DxColumn
       v-for="(column,index) in titles" :key="index"
-      :show-borders="false"
-
-        :height="50"
         :caption="column.Caption"
         :data-field="column.FieldName"
       />

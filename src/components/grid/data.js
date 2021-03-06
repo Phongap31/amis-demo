@@ -241,6 +241,26 @@ const titles = [{
     }
 ]
 
+export const products = [{
+    'ID': 1,
+    'Name': 'HD Video Player',
+    'Price': 330,
+    'Current_Inventory': 225,
+    'Backorder': 0,
+    'Manufacturing': 10,
+    'Category': 'Video Players',
+    'ImageSrc': 'images/products/1.png'
+}, {
+    'ID': 2,
+    'Name': 'SuperHD Video Player',
+    'Price': 400,
+    'Current_Inventory': 150,
+    'Backorder': 0,
+    'Manufacturing': 25,
+    'Category': 'Video Players',
+    'ImageSrc': 'images/products/2.png'
+}, ]
+
 export default {
     getEmployees() {
         return employees;

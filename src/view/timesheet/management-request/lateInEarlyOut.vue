@@ -37,7 +37,6 @@ import FormDetail from './lateInEarlyOutDetail';
 export default {
   components: { msInput, MsButton, MsGrid, MsFilter,FormDetail },
   data() {
-    MsButton
     return {
       filterOpen: true,
       isHideForm: true,
@@ -48,9 +47,9 @@ export default {
       this.isHideForm = false;
       console.log(this.isHideForm);
 
-      this.$nextTick(() => {
-        this.$refs.details.$refs.employeeCode.$refs.input.focus();
-      })
+      // this.$nextTick(() => {
+      //   this.$refs.details.$refs.employeeCode.$refs.input.focus();
+      // })
     },
     toCloseForm(value){
       this.isHideForm = value
