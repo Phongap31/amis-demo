@@ -24,6 +24,7 @@
                 >Người nộp đơn <span class="input-require">*</span></label
               >
               <DxSelectBox
+                ref="name"
                 class="ms-combobox"
                 placeholder=""
                 :search-enabled="true"
@@ -46,7 +47,12 @@
               <label for=""
                 >Ngày nộp đơn <span class="input-require">*</span></label
               >
-              <date-picker v-model="time" class="ms-combobox"></date-picker>
+              <date-picker
+                v-model="time"
+                class="ms-combobox"
+                format="DD/MM/YYYY"
+                :lang="lang"
+              ></date-picker>
             </div>
             <div class="row-body">
               <label for="">Từ ngày <span class="input-require">*</span></label>
@@ -60,11 +66,11 @@
             </div>
             <div class="row-body" style="margin: 60px 0">
               <label for="">Áp dụng cho</label>
-              <DxSelectBox
+              <DxTagBox
                 class="ms-combobox"
                 style="height: 80px"
                 placeholder="Áp dụng cho cả tuần"
-                :search-enabled="true"
+                :search-enabled="false"
                 :data-source="products"
                 display-expr="value"
                 value-expr="id"
@@ -194,12 +200,14 @@
 
 <script>
 import { DxNumberBox } from "devextreme-vue/number-box";
+import DxTagBox from "devextreme-vue/tag-box";
 import DxTextBox from "devextreme-vue/text-box";
 import DxTextArea from "devextreme-vue/text-area";
 import msInput from "../../../components/input/msInput.vue";
 import DxSelectBox from "devextreme-vue/select-box";
 import DatePicker from "vue2-datepicker";
 import "vue2-datepicker/index.css";
+import "vue2-datepicker/locale/vi";
 export default {
   components: {
     msInput,
@@ -208,6 +216,7 @@ export default {
     DxSelectBox,
     DxTextArea,
     DxNumberBox,
+    DxTagBox,
   },
   name: "lateInEarlyOutDetail",
   props: {
@@ -216,6 +225,7 @@ export default {
     },
   },
   methods: {
+    // Truyền boolean đóng form chi tiết
     btnCancelOnClick() {
       this.$emit("closeForm", true);
     },
@@ -238,6 +248,12 @@ export default {
       ],
       values: ["value1", "value2"],
       time: new Date(),
+      lang: {
+        formatLocale: {
+          firstDayOfWeek: 1,
+        },
+        monthBeforeYear: true,
+      },
     };
   },
 };

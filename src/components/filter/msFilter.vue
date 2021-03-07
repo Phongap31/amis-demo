@@ -7,6 +7,7 @@
       </div>
       <div class="abc">
         <ms-input
+        ref="inputFilter"
           class="input2"
           placeholder="Tìm kiếm"
           icon="search-icon"
@@ -42,11 +43,13 @@ export default {
   data() {
       return {
           titles: service.getTitles(),
+          
       }
   },
   methods: {
     closeFilter(){
-      this.$emit('closeFilter', false)
+      document.getElementById('ms-grid').style.width = '100%';
+      this.$emit('closeFilter', false);
     }
   }
 };

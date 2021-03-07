@@ -1,5 +1,5 @@
 <template>
-  <div class="ms-grid">
+  <div id="ms-grid">
     <DxDataGrid
       id="gridContainer"
       :data-source="employees"
@@ -7,12 +7,11 @@
       :allow-column-resizing="true"
       :show-borders="true"
       :show-row-lines="true"
-      :show-row-column="false"
-      height="calc(100vh - 165px)"
+      height="calc(100vh - 150px)"
       :onContentReady="onContentReady"
     >
       <DxSelection :deferred="false" mode="multiple"/>
-      <DxColumnFixing :enabled="false" />
+      <DxColumnFixing :enabled="true" />
       <DxPaging :page-size="10"/>
       <DxPager
       :show-page-size-selector="true"
@@ -33,7 +32,6 @@
       <DxColumn
       v-for="(column,index) in titles" :key="index"
       :width="200"
-      :height="80"
         :caption="column.Caption"
         :data-field="column.FieldName"
       />
@@ -43,11 +41,24 @@
         </template>
        <DxColumn 
         :width="100"
-        caption="Actions"
+        :fixed="true"
+        alignment="right"
+        fixed-position="right"
+        
        />
+       <!-- <template #actions>
+         <div :class="{isHide: false}" class="col-actions">
+           <div class="remove-icon"></div>
+           <div class="edit-icon"></div>
+         </div>
+       </template> -->
         
     </DxDataGrid>
+    <!-- <div class="paging">
+      abc
+    </div> -->
     <DxPopover
+    ref="popupCustome"
       :width="255"
       :height="450"
       :show-borders="true"
@@ -61,7 +72,7 @@
         <div @click="isCustome=false" class="c-column-close"><i class="fas fa-times"></i></div>
       </div>
       <div>
-        <ms-input placeholder="Tìm kiếm"></ms-input>
+        <ms-input ref="searchInput" placeholder="Tìm kiếm"></ms-input>
       </div>
       <div class="custome-body">
         <div class="custome-element" v-for="(title, index) in titles" :key="index">
@@ -110,6 +121,7 @@ export default {
       employees: service.getEmployees(),
       titles: service.getTitles(),
       isCustome: false,
+      isAction: false,
       pageSizes: [5, 10, 50, 100],
       animationConfig: {
         show: {
@@ -144,6 +156,10 @@ export default {
     },
     test() {
       this.isCustome = !this.isCustome;
+
+      this.$nextTick(() => {
+      this.$refs.searchInput.$refs.input.focus();
+      })
     },
   },
 };

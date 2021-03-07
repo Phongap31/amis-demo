@@ -29,7 +29,7 @@
           >Thêm</ms-button
         >
         <ms-button
-          @buttonEvent="filterOpen = !filterOpen"
+          @buttonEvent="toggleFilter()"
           class="btn-filter"
           bgcolor="bg-color-filter"
           icon="filter-icon"
@@ -37,14 +37,6 @@
       </div>
     </div>
     <div class="content-feature">
-      <!-- <DxSelectBox
-        class="ms-combobox"
-        placeholder=""
-        :search-enabled="true"
-        :data-source="products"
-        display-expr="value"
-        value-expr="id"
-      /> -->
       <ms-grid>
         <!-- <template v-slot:FirstName="{data}">
           <div style="color: red;">
@@ -52,7 +44,11 @@
           </div>
         </template> -->
       </ms-grid>
-      <ms-filter @closeFilter="toCloseFilter" :open="filterOpen"></ms-filter>
+      <ms-filter
+        ref="searchFilter"
+        @closeFilter="toCloseFilter"
+        :open="filterOpen"
+      ></ms-filter>
     </div>
   </div>
 </template>
@@ -68,42 +64,51 @@ export default {
   components: { msInput, DxSelectBox, MsButton, MsGrid, MsFilter, FormDetail },
   data() {
     return {
-      filterOpen: true,
+      filterOpen: false,
       isHideForm: true,
-      // products: [
-      //   {
-      //     'id': 1,
-      //     'value': "value 1",
-      //   },
-      //   {
-      //     'id': 2,
-      //     'value': "value 2",
-      //   },
-      //   {
-      //     'id': 3,
-      //     'value': "value 3",
-      //   },
-      // ],
     };
   },
   methods: {
+    // Event mở form thông tin chi tiết
     btnAddOnClick() {
       this.isHideForm = false;
-      console.log(this.isHideForm);
 
-      // this.$nextTick(() => {
-      //   this.$refs.details.$refs.employeeCode.$refs.input.focus();
-      // })
+      //Tự động focus vào select box đầu tiên
+      this.$nextTick(() => {
+        this.$refs.details.$refs.name.instance.focus();
+      });
     },
+
+    //Đóng mở form lọc cột
+    toggleFilter() {
+      this.filterOpen = !this.filterOpen;
+      if (this.filterOpen) {
+        document.getElementById("ms-grid").style.width = "calc(100% - 250px)";
+        //Tự động focus vào ô input
+        this.$nextTick(() => {
+          this.$refs.searchFilter.$refs.inputFilter.$refs.input.focus();
+        });
+      } else {
+        document.getElementById("ms-grid").style.width = "100%";
+      }
+    },
+
+    //Đóng form chi tiết
     toCloseForm(value) {
       this.isHideForm = value;
     },
+
+    //Đóng form lọc
     toCloseFilter(value) {
       this.filterOpen = value;
     },
   },
+  // watch: {
+  //   filterOpen: function() {
+  //     document.getElementsByClassName('filter-icon').style.backgroundColor = 'red';
+  //   }
+  // }
 };
 </script>
 <style>
 </style>
-MsDropdown

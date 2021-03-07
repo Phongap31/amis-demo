@@ -1,5 +1,5 @@
-.ms-grid {
-    margin-top: 25px;
+#ms-grid {
+    margin-top: 20px;
     width: 100%;
     position: relative;
 }
@@ -54,6 +54,11 @@
 
 .custome-element:hover {
     background-color: #ccc;
+}
+
+.col-actions {
+    display: flex;
+    /* align-items: center; */
 }
 
 
@@ -189,6 +194,7 @@
     transform: rotate(45deg);
 }
 
+.dx-checkbox-indeterminate .dx-checkbox-icon::before,
 .dx-checkbox-checked .dx-checkbox-icon::before {
     background-color: #FA6000;
     color: #fff;
@@ -198,10 +204,25 @@
     padding: 14px;
 }
 
-td {
-    border-right: none !important;
-    padding: 14px !important;
+.dx-datagrid {
+    border-radius: 4px;
 }
+
+#ms-grid td {
+    border-right: none !important;
+    padding: 12px !important;
+}
+
+.dx-datagrid-rowsview .dx-row.dx-row-lines:hover>td,
+.dx-datagrid-rowsview .dx-row.dx-row-lines:hover {
+    cursor: pointer;
+    background-color: var(--date-picker-hover-bg);
+}
+
+
+/* #ms-grid td:hover {
+    background-color: var(--date-picker-hover-bg);
+} */
 
 .dx-datagrid-headers .dx-datagrid-table .dx-row>td {
     padding: 14px;
@@ -219,4 +240,11 @@ td {
     /* margin-top: 1px; */
     border: 1px solid #ddd;
     border-top: none;
+    border-radius: 0 0 4px 4px;
+    margin-top: 0 !important;
+}
+
+.dx-datagrid-borders>.dx-datagrid-headers {
+    border-radius: 4px 4px 0 0;
+    border-bottom: none;
 }

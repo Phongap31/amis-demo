@@ -1,5 +1,5 @@
 <template>
-    <button @click="$emit('buttonEvent')" :class="bgcolor" class="btn">
+    <button @click="isFocus()" :class="bgcolor" class="btn">
         <div v-if="icon && !iconAfter" :class="icon" class="icon-left"></div>
         <slot />
         <div v-if="icon && iconAfter" :class="icon"></div>
@@ -20,6 +20,12 @@ export default {
         bgcolor: {
             type: String,
             default: false
+        }
+    },
+    methods: {
+        isFocus(){
+            // document.getElementsByClassName('filter-icon').style.backgroundColor = 'red';
+            this.$emit('buttonEvent');        
         }
     }    
 }

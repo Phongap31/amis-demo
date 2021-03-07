@@ -26,6 +26,7 @@
 .brand-text {
     font-weight: 750;
     font-size: 18px;
+    margin-left: 5px;
 }
 
 .nav-item {
@@ -35,6 +36,12 @@
     padding: 10px 15px;
     cursor: pointer;
     outline: none;
+}
+
+.nav-item:nth-child(4) {
+    border-radius: 50px;
+    background: #FA6000;
+    color: #fff !important;
 }
 
 .nav-item:hover {

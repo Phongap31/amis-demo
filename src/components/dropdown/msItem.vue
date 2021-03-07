@@ -2,6 +2,7 @@
   <div class="item" @click="doFunc">
     <router-link class="link-item" :to="item.url">
       <slot />
+      <div :class="{isHide: !isActiveDropdown}" class="dropdown-icon"></div>
     </router-link>
   </div>
 </template>
@@ -22,12 +23,21 @@ export default {
   methods: {
     doFunc() {
       this.closeDropdown();
+      this.isActiveDropdown = true;
     },
+  },
+  data() {
+    return {
+      isActiveDropdown: false
+    }
   },
 };
 </script>
 
 <style scoped>
+.isHide{
+  display: none;
+}
 .item {
   display: block;
   width: 100%;
@@ -45,8 +55,11 @@ export default {
     text-decoration: none;
     padding: 0 5px;
     color: var(--black);
+    display: flex;
+    align-items: center;
+    position: relative;
 }
 .link-item:hover{
-  color: red;
+  color: var(--dropdown-item-active-color);
 }
 </style>

@@ -1,8 +1,12 @@
-.fa-chevron-down {
+/* .fa-chevron-down {
     margin-left: 2px;
     visibility: hidden;
 }
 
 .dropdown:hover .fa-chevron-down {
     visibility: visible;
+} */
+
+.fa-chevron-down {
+    color: var(--white);
 }

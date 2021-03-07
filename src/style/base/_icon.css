@@ -22,11 +22,19 @@
 }
 
 .filter-icon {
-    background: url('../../assets/Resource/icon/Icon.569cfdf.svg') no-repeat -244px -51px;
+    mask-image: url('../../assets/Resource/icon/Icon.569cfdf.svg');
     width: 16px;
     height: 18px;
+    mask-position: -244px -51px;
+    mask-repeat: no-repeat;
     margin-right: 0 !important;
+    background-color: #6a6868;
 }
+
+
+/* .filter-icon:hover {
+    background-color: red;
+} */
 
 .search-icon {
     background: url('../../assets/Resource/icon/Icon.569cfdf.svg') no-repeat -122px -4px;
@@ -64,6 +72,29 @@
     width: 32px;
     height: 32px;
     margin-right: 10px;
+}
+
+.remove-icon {
+    background: url('../../assets/Resource/icon/Icon.569cfdf.svg') no-repeat -170px -26px;
+    width: 20px;
+    height: 20px;
+    margin-bottom: 3px;
+}
+
+.edit-icon {
+    background: url('../../assets/Resource/icon/Icon.569cfdf.svg') no-repeat -291px -26px;
+    width: 18px;
+    height: 20px;
+    margin: 0 10px;
+    margin-bottom: 3px;
+}
+
+.dropdown-icon {
+    background: url('../../assets/Resource/icon/Icon.569cfdf.svg') no-repeat -220px -54px;
+    width: 16px;
+    height: 12px;
+    position: absolute;
+    right: 0;
 }
 
 .mx-icon-calendar {

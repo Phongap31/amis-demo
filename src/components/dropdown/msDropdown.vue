@@ -58,11 +58,11 @@ export default {
 };
 </script>
 <style scoped>
-/* .isActive {
+.isActive {
   border-radius: 50px;
-  background: #fa6000;
+  background-color: #fa6000;
   color: #fff !important;
-} */
+}
 .dropdown {
   position: relative;
   width: fit-content;

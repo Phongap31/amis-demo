@@ -18,5 +18,8 @@
 
 .btn-filter:hover {
     border-color: #FA6000;
-    color: #FA6000;
+}
+
+.btn-filter:hover .filter-icon {
+    background-color: var(--button-primary-hover-bg-color);
 }
