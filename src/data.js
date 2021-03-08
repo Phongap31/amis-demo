@@ -12,7 +12,7 @@ const employees = [{
         'EarlyCenter': 10,
         'LateCenter': 15,
         'EarlyEnd': 20,
-        'ApprovedBy': 'CEO',
+        'ApprovedBy': 'Tống Giang',
         'PersionRelation': 'Võ Tòng',
         'Note': 'Không có gì',
         'Status': 'Từ chối'
@@ -26,11 +26,11 @@ const employees = [{
         'ApplyFor': 'Thứ 2',
         'WorkShift': 'Sáng',
         'ResionFor': 'Xe hỏng',
-        'LateBegin': 20,
-        'EarlyCenter': 10,
+        'LateBegin': 5,
+        'EarlyCenter': 20,
         'LateCenter': 15,
-        'EarlyEnd': 20,
-        'ApprovedBy': 'CEO',
+        'EarlyEnd': 30,
+        'ApprovedBy': 'Ngô Dụng',
         'PersionRelation': 'Võ Tòng',
         'Note': 'Không có gì',
         'Status': 'Đã duyệt'
@@ -44,11 +44,11 @@ const employees = [{
         'ApplyFor': 'Thứ 2',
         'WorkShift': 'Sáng',
         'ResionFor': 'Xe hỏng',
-        'LateBegin': 20,
-        'EarlyCenter': 10,
+        'LateBegin': 10,
+        'EarlyCenter': 5,
         'LateCenter': 15,
-        'EarlyEnd': 20,
-        'ApprovedBy': 'CEO',
+        'EarlyEnd': 10,
+        'ApprovedBy': 'Tiều Cái',
         'PersionRelation': 'Võ Tòng',
         'Note': 'Không có gì',
         'Status': 'Từ chối'
@@ -63,13 +63,13 @@ const employees = [{
         'WorkShift': 'Sáng',
         'ResionFor': 'Xe hỏng',
         'LateBegin': 20,
-        'EarlyCenter': 10,
+        'EarlyCenter': 15,
         'LateCenter': 15,
-        'EarlyEnd': 20,
-        'ApprovedBy': 'CEO',
+        'EarlyEnd': 10,
+        'ApprovedBy': 'Tôn Thắng',
         'PersionRelation': 'Võ Tòng',
         'Note': 'Không có gì',
-        'Status': 'Từ chối'
+        'Status': 'Chờ duyệt'
     }, {
         'ID': 5,
         'FullName': 'Lê Hồng Phong',
@@ -80,14 +80,14 @@ const employees = [{
         'ApplyFor': 'Thứ 2',
         'WorkShift': 'Sáng',
         'ResionFor': 'Xe hỏng',
-        'LateBegin': 20,
+        'LateBegin': 0,
         'EarlyCenter': 10,
-        'LateCenter': 15,
-        'EarlyEnd': 20,
-        'ApprovedBy': 'CEO',
+        'LateCenter': 5,
+        'EarlyEnd': 0,
+        'ApprovedBy': 'Lâm Sung',
         'PersionRelation': 'Võ Tòng',
         'Note': 'Không có gì',
-        'Status': 'Từ chối'
+        'Status': 'Chờ duyệt'
     }, {
         'ID': 6,
         'FullName': 'Lê Hồng Phong',
@@ -102,7 +102,7 @@ const employees = [{
         'EarlyCenter': 10,
         'LateCenter': 15,
         'EarlyEnd': 20,
-        'ApprovedBy': 'CEO',
+        'ApprovedBy': 'Võ Tòng',
         'PersionRelation': 'Võ Tòng',
         'Note': 'Không có gì',
         'Status': 'Từ chối'
@@ -117,14 +117,14 @@ const employees = [{
         'ApplyFor': 'Thứ 2',
         'WorkShift': 'Sáng',
         'ResionFor': 'Xe hỏng',
-        'LateBegin': 20,
-        'EarlyCenter': 10,
-        'LateCenter': 15,
-        'EarlyEnd': 20,
-        'ApprovedBy': 'CEO',
+        'LateBegin': 7,
+        'EarlyCenter': 1,
+        'LateCenter': 5,
+        'EarlyEnd': 2,
+        'ApprovedBy': 'Vương Anh',
         'PersionRelation': 'Võ Tòng',
         'Note': 'Không có gì',
-        'Status': 'Từ chối'
+        'Status': 'Chờ duyệt'
     }, {
         'ID': 8,
         'FullName': 'Lê Hồng Phong',
@@ -135,11 +135,11 @@ const employees = [{
         'ApplyFor': 'Thứ 2',
         'WorkShift': 'Sáng',
         'ResionFor': 'Xe hỏng',
-        'LateBegin': 20,
-        'EarlyCenter': 10,
+        'LateBegin': 30,
+        'EarlyCenter': 20,
         'LateCenter': 15,
-        'EarlyEnd': 20,
-        'ApprovedBy': 'CEO',
+        'EarlyEnd': 30,
+        'ApprovedBy': 'Trương Thanh',
         'PersionRelation': 'Võ Tòng',
         'Note': 'Không có gì',
         'Status': 'Từ chối'
@@ -157,7 +157,7 @@ const employees = [{
         'EarlyCenter': 10,
         'LateCenter': 15,
         'EarlyEnd': 20,
-        'ApprovedBy': 'CEO',
+        'ApprovedBy': 'Trương Thuận',
         'PersionRelation': 'Võ Tòng',
         'Note': 'Không có gì',
         'Status': 'Từ chối'
@@ -175,10 +175,10 @@ const employees = [{
         'EarlyCenter': 10,
         'LateCenter': 15,
         'EarlyEnd': 20,
-        'ApprovedBy': 'CEO',
+        'ApprovedBy': 'Thời Thiên',
         'PersionRelation': 'Võ Tòng',
         'Note': 'Không có gì',
-        'Status': 'Từ chối'
+        'Status': 'Chờ duyệt'
     }, {
         'ID': 11,
         'FullName': 'Lê Hồng Phong',
@@ -189,14 +189,14 @@ const employees = [{
         'ApplyFor': 'Thứ 2',
         'WorkShift': 'Sáng',
         'ResionFor': 'Xe hỏng',
-        'LateBegin': 20,
-        'EarlyCenter': 10,
-        'LateCenter': 15,
-        'EarlyEnd': 20,
-        'ApprovedBy': 'CEO',
+        'LateBegin': 10,
+        'EarlyCenter': 20,
+        'LateCenter': 12,
+        'EarlyEnd': 2,
+        'ApprovedBy': 'Yến Thanh',
         'PersionRelation': 'Võ Tòng',
         'Note': 'Không có gì',
-        'Status': 'Từ chối'
+        'Status': 'Chờ duyệt'
     }, {
         'ID': 12,
         'FullName': 'Lê Hồng Phong',
@@ -211,7 +211,7 @@ const employees = [{
         'EarlyCenter': 10,
         'LateCenter': 15,
         'EarlyEnd': 20,
-        'ApprovedBy': 'CEO',
+        'ApprovedBy': 'Cao Cầu',
         'PersionRelation': 'Võ Tòng',
         'Note': 'Không có gì',
         'Status': 'Từ chối'
@@ -219,35 +219,43 @@ const employees = [{
 ];
 
 const titles = [{
+        ID: 1,
         Caption: "Người duyệt",
         FieldName: "ApprovedBy",
         HeaderTemplate: "FirstName"
     },
     {
+        ID: 2,
         Caption: "Ngày lập",
         FieldName: "HireDate"
     },
     {
+        ID: 3,
         Caption: "Đi muộn đầu ca",
         FieldName: "LateBegin"
     },
     {
+        ID: 4,
         Caption: "Về sớm giữa ca",
         FieldName: "EarlyCenter"
     },
     {
+        ID: 5,
         Caption: "Vào muộn giữa ca",
         FieldName: "LateCenter"
     },
     {
+        ID: 6,
         Caption: "Về sớm cuối ca",
         FieldName: "EarlyEnd"
     },
     {
+        ID: 7,
         Caption: "Áp dụng cho",
         FieldName: "ApplyFor"
     },
     {
+        ID: 8,
         Caption: "Trạng thái",
         FieldName: "Status"
     }

@@ -8,6 +8,10 @@
     border-radius: 4px;
 }
 
+.dx-datagrid {
+    z-index: 0;
+}
+
 .custome-header {
     display: flex;
     align-items: center;
@@ -318,11 +322,12 @@
     align-items: center;
 }
 
-select .page-size {
-    outline: none !important;
-    margin-right: 10px;
-    width: 30px;
-    height: 30px;
+.paging select {
+    width: 55px;
+    height: 34px;
+    outline: none;
+    border: 1px solid #bbb;
+    border-radius: 3px;
 }
 
 .from-to {

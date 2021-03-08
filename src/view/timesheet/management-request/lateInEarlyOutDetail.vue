@@ -29,7 +29,7 @@
                 class="ms-combobox"
                 placeholder=""
                 :search-enabled="true"
-                :data-source="products"
+                :data-source="names"
                 display-expr="value"
                 value-expr="id"
               />
@@ -79,7 +79,7 @@
                 style="height: 80px"
                 placeholder="Áp dụng cho cả tuần"
                 :search-enabled="false"
-                :data-source="products"
+                :data-source="days"
                 display-expr="value"
                 value-expr="id"
               />
@@ -200,7 +200,7 @@
                 class="ms-combobox"
                 placeholder=""
                 :search-enabled="true"
-                :data-source="products"
+                :data-source="status"
                 display-expr="value"
                 value-expr="id"
               />
@@ -265,6 +265,10 @@ export default {
         this.$emit("eventAdd", this.obj);
         this.btnCancelOnClick();
       }
+      if(this.addOrEditChild == "Edit"){
+        this.$emit("eventEdit", this.obj);
+        this.btnCancelOnClick();
+      }
     },
     // Truyền boolean đóng form chi tiết
     btnCancelOnClick() {
@@ -277,22 +281,65 @@ export default {
   data() {
     return {
       obj: Object,
-      products: [
+      names: [
         {
           id: 1,
-          value: "value 1",
+          value: "Lê Hồng Phong",
         },
         {
           id: 2,
-          value: "value 2",
+          value: "Lê Thanh Hương",
         },
         {
           id: 3,
-          value: "value 3",
+          value: "Trần Thái Nguyên",
+        },
+      ],
+      status: [
+        {
+          id: 1,
+          value: "Chờ duyệt",
+        },
+        {
+          id: 2,
+          value: "Từ chối",
+        },
+        {
+          id: 3,
+          value: "Đã duyệt",
+        },
+      ],
+      days: [
+        {
+          id: 1,
+          value: "Thứ 2",
+        },
+        {
+          id: 2,
+          value: "Thứ 3",
+        },
+        {
+          id: 3,
+          value: "Thứ 4",
+        },
+        {
+          id: 4,
+          value: "Thứ 5",
+        },
+        {
+          id: 5,
+          value: "Thứ 6",
+        },
+        {
+          id: 6,
+          value: "Thứ 7",
+        },
+        {
+          id: 7,
+          value: "Chủ nhật",
         },
       ],
       values: ["value1", "value2"],
-      time: "18/07/1999",
       lang: {
         formatLocale: {
           firstDayOfWeek: 1,

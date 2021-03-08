@@ -5,9 +5,11 @@ import 'devextreme/dist/css/dx.light.css';
 import Vue from 'vue'
 import App from './App'
 import router from './router'
+import Notifications from 'vue-notification'
 import 'devextreme/dist/css/dx.common.css';
 import 'devextreme/dist/css/dx.light.css';
 
+Vue.use(Notifications)
 Vue.config.productionTip = false
 
 import './globalComponent.js'

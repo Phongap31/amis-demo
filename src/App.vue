@@ -2,6 +2,7 @@
   <div id="app">
     <Header />
     <Content />
+    <notifications group="foo" position="top center"/>
   </div>
 </template>
 

@@ -50,9 +50,9 @@
       />
       <template #actions="{ data }">
         <div :class="{ isHide: false }" class="col-actions">
-          <div @click="testdata()" class="remove-icon"></div>
+          <div @click="clickOnRemove(data)" class="remove-icon"></div>
           <div
-            @click="$emit('openEditForm', data.row.data)"
+            @click="clickOnEdit(data)"
             class="edit-icon"
           ></div>
         </div>
@@ -72,7 +72,7 @@
         <div class="next-icon"></div>
       </div>
     </div>
-    <DialogRemove :isHideDialog="isDialog"/>
+    <DialogRemove :isHideDialog="isDialog" @closeFormRemove="callCloseFormRemove" @callDeleteOnClick="onRemoved"/>
     <DxPopover
       ref="popupCustome"
       :width="255"
@@ -92,7 +92,13 @@
       <div>
         <ms-input ref="searchInput" placeholder="Tìm kiếm"></ms-input>
       </div>
-      <div class="custome-body">
+      <draggable class="custome-body"
+        :titles="titles"
+        ghost-class="ghost"
+        :move="checkMove"
+        @start="dragging = true"
+        @end="dragging = false"
+      >
         <div
           class="custome-element"
           v-for="(title, index) in titles"
@@ -100,12 +106,12 @@
         >
           <label class="container"
             >{{ title.Caption }}
-            <input type="checkbox" />
+            <input type="checkbox" checked="checked"/>
             <span class="checkmark"></span>
           </label>
           <div class="menu-icon"></div>
         </div>
-      </div>
+      </draggable>
       <div class="custome-footer">
         <ms-button bgcolor="bg-color-filter">Mặc định</ms-button>
         <ms-button class="btn-apply" bgcolor="bg-color">Lưu</ms-button>
@@ -126,6 +132,7 @@ import {
 import { DxPopover } from "devextreme-vue/popover";
 import DialogRemove from './dialogRemove'
 import service from "../../data.js";
+import draggable from "vuedraggable";
 
 export default {
   components: {
@@ -137,12 +144,14 @@ export default {
     DxSelection,
     DxPopover,
     DxPager,
-    DialogRemove
+    DialogRemove,
+    draggable
   },
   data() {
     return {
       employees: service.getEmployees(),
       titles: service.getTitles(),
+      dragging: false,
       isCustome: false,
       isAction: false,
       isDialog: true,
@@ -163,12 +172,34 @@ export default {
           to: 0,
         },
       },
+      idForRemove: String
     };
   },
+  computed: {
+    draggingInfo() {
+      return this.dragging ? "under drag" : "";
+    }
+  },
   methods: {
-    testdata() {
+    // Mở form Edit
+    clickOnEdit(data){
+      this.$emit('openEditForm', data.row.data)
+    },
+    // Mở form xóa đơn và lấy ID
+    clickOnRemove(data) {
       this.isDialog = false;
-      console.log(this.isDialog);
+      this.idForRemove = data.row.data.ID;
+    },
+
+    //Thực hiện xóa theo ID
+    onRemoved(){
+      this.employees = this.employees.filter(emp => emp.ID != this.idForRemove)
+      this.$notify({
+        group: "foo",
+        type: "success",
+        text: "Xóa đơn thành công!!!",
+        speed: 1000,
+      });
     },
 
     //Set lại vị trí selection
@@ -178,9 +209,6 @@ export default {
     calculateCellValue(data) {
       return [data.Title, data.FirstName, data.LastName].join(" ");
     },
-    // onRowPrepared(e) {
-    //   e.rowElement.style.height = "50px";
-    // },
 
     //Sự kiện đóng mở form tùy chỉnh
     toggleCustom() {
@@ -190,6 +218,10 @@ export default {
         this.$refs.searchInput.$refs.input.focus();
       });
     },
+
+    callCloseFormRemove(value){
+      this.isDialog = value
+    }
   },
 };
 </script>

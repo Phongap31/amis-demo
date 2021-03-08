@@ -17,6 +17,7 @@
         :ishide="isHideForm"
         @closeForm="toCloseForm"
         @eventAdd="eventAddOn"
+        @eventEdit="eventEditOn"
         ref="details"
         :childEnitites="entities"
         :addOrEditChild="addOrEdit"
@@ -78,11 +79,12 @@ export default {
       isHideForm: true,
       addOrEdit: String,
       entities: Object,
+      idForEdit: String,
       newApp: {
         ID: 13,
         FullName: "",
         Position: "",
-        HireDate: null,
+        HireDate: new Date(),
         FromDate: null,
         ToDate: null,
         ApplyFor: "",
@@ -111,8 +113,16 @@ export default {
       });
     },
 
+    //Thực hiện thêm mới
     eventAddOn(obj){
       this.employees.push(obj);
+      this.$notify({
+        group: "foo",
+        type: "success",
+        // title: "Message",
+        text: "Thêm đơn mới thành công!!!",
+        speed: 1000,
+      });
     },
 
     // Mở form edit
@@ -120,13 +130,26 @@ export default {
       this.isHideForm = false;
       this.addOrEdit = "Edit";
       this.entities = data;
-      console.log(this.entities.HireDate);
-      console.log(new Date());
+      this.idForEdit = data.ID;
 
       //Tự động focus vào select box đầu tiên
       // this.$nextTick(() => {
       //   this.$refs.details.$refs.name.instance.focus();
       // });
+    },
+
+    eventEditOn(data){
+      this.employees = this.employees.map(emp => {
+        if(emp.ID == data.ID){
+          emp = data
+        }
+      });
+      this.$notify({
+        group: "foo",
+        type: "success",
+        text: "Sửa đơn thành công!!!",
+        speed: 1000,
+      });
     },
 
     //Đóng mở form lọc cột
