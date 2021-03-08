@@ -7,13 +7,20 @@
           <div class="status-text">Trạng thái:</div>
           <select class="status-dropdown" name="" id="">
             <option value="all">Tất cả</option>
-            <option value="value1">Value 1</option>
-            <option value="value1">Value 2</option>
-            <option value="value1">Value 3</option>
+            <option value="value1">Chờ duyệt</option>
+            <option value="value1">Từ chối</option>
+            <option value="value1">Đã duyệt</option>
           </select>
         </div>
       </div>
-      <FormDetail :ishide="isHideForm" @closeForm="toCloseForm" ref="details" />
+      <FormDetail
+        :ishide="isHideForm"
+        @closeForm="toCloseForm"
+        @eventAdd="eventAddOn"
+        ref="details"
+        :childEnitites="entities"
+        :addOrEditChild="addOrEdit"
+      />
       <div class="top-content-right">
         <ms-input
           class="input1"
@@ -37,7 +44,7 @@
       </div>
     </div>
     <div class="content-feature">
-      <ms-grid>
+      <ms-grid @openEditForm="callEditForm">
         <!-- <template v-slot:FirstName="{data}">
           <div style="color: red;">
             {{data.data.column.caption}}
@@ -57,33 +64,76 @@ import MsButton from "@/components/button/msButton.vue";
 import MsFilter from "@/components/filter/msFilter.vue";
 import MsGrid from "@/components/grid/msGrid.vue";
 import msInput from "@/components/input/msInput.vue";
-import FormDetail from "./lateInEarlyOutDetail";
 import DxSelectBox from "devextreme-vue/select-box";
+import FormDetail from './lateInEarlyOutDetail';
+import service from "@/data.js";
+
 
 export default {
-  components: { msInput, DxSelectBox, MsButton, MsGrid, MsFilter, FormDetail },
+  components: { msInput, DxSelectBox, MsButton, MsGrid, MsFilter,FormDetail },
   data() {
     return {
+      employees: service.getEmployees(),
       filterOpen: false,
       isHideForm: true,
+      addOrEdit: String,
+      entities: Object,
+      newApp: {
+        ID: 13,
+        FullName: "",
+        Position: "",
+        HireDate: null,
+        FromDate: null,
+        ToDate: null,
+        ApplyFor: "",
+        WorkShift: "",
+        ResionFor: "",
+        LateBegin: 0,
+        EarlyCenter: 0,
+        LateCenter: 0,
+        EarlyEnd: 0,
+        ApprovedBy: "",
+        PersionRelation: "",
+        Note: "",
+        Status: "",
+      },
     };
   },
   methods: {
     // Event mở form thông tin chi tiết
     btnAddOnClick() {
       this.isHideForm = false;
-
+      this.addOrEdit = "Add";
+      this.entities = this.newApp;
       //Tự động focus vào select box đầu tiên
       this.$nextTick(() => {
         this.$refs.details.$refs.name.instance.focus();
       });
     },
 
+    eventAddOn(obj){
+      this.employees.push(obj);
+    },
+
+    // Mở form edit
+    callEditForm(data) {
+      this.isHideForm = false;
+      this.addOrEdit = "Edit";
+      this.entities = data;
+      console.log(this.entities.HireDate);
+      console.log(new Date());
+
+      //Tự động focus vào select box đầu tiên
+      // this.$nextTick(() => {
+      //   this.$refs.details.$refs.name.instance.focus();
+      // });
+    },
+
     //Đóng mở form lọc cột
     toggleFilter() {
       this.filterOpen = !this.filterOpen;
       if (this.filterOpen) {
-        document.getElementById("ms-grid").style.width = "calc(100% - 250px)";
+        document.getElementById("ms-grid").style.width = "calc(100% - 280px)";
         //Tự động focus vào ô input
         this.$nextTick(() => {
           this.$refs.searchFilter.$refs.inputFilter.$refs.input.focus();

@@ -39,9 +39,9 @@
 
 .dialog-header-close {
     position: absolute;
-    right: 20px;
+    right: 25px;
     cursor: pointer;
-    top: 0;
+    top: 30px;
     align-items: center;
     font-size: 20px !important;
 }
@@ -107,7 +107,6 @@ div.dx-overlay-content.dx-popup-normal.dx-resizable {
     z-index: 99999999999999 !important;
 }
 
-.dx-tag-content,
 .dx-list-item.dx-list-item-selected,
 .dx-list-item.dx-state-hover {
     background-color: var(--combobox-highlight-bg-color) !important;

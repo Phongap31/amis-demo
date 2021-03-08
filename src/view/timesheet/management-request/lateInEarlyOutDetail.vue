@@ -13,7 +13,7 @@
           </div>
           <div class="dialog-header-close">
             <div v-on:click="btnCancelOnClick">
-              <i class="fas fa-times"></i>
+              <i class="close-icon"></i>
             </div>
           </div>
         </div>
@@ -24,6 +24,7 @@
                 >Người nộp đơn <span class="input-require">*</span></label
               >
               <DxSelectBox
+                v-model="obj.FullName"
                 ref="name"
                 class="ms-combobox"
                 placeholder=""
@@ -48,7 +49,7 @@
                 >Ngày nộp đơn <span class="input-require">*</span></label
               >
               <date-picker
-                v-model="time"
+                v-model="obj.HireDate"
                 class="ms-combobox"
                 format="DD/MM/YYYY"
                 :lang="lang"
@@ -56,17 +57,24 @@
             </div>
             <div class="row-body">
               <label for="">Từ ngày <span class="input-require">*</span></label>
-              <date-picker class="ms-combobox"></date-picker>
+              <date-picker
+                v-model="obj.FromDate"
+                class="ms-combobox"
+              ></date-picker>
             </div>
             <div class="row-body">
               <label for=""
                 >Đến ngày <span class="input-require">*</span></label
               >
-              <date-picker class="ms-combobox"></date-picker>
+              <date-picker
+                v-model="obj.ToDate"
+                class="ms-combobox"
+              ></date-picker>
             </div>
             <div class="row-body" style="margin: 60px 0">
               <label for="">Áp dụng cho</label>
               <DxTagBox
+                v-model="obj.ApplyFor"
                 class="ms-combobox"
                 style="height: 80px"
                 placeholder="Áp dụng cho cả tuần"
@@ -81,6 +89,7 @@
                 >Ca áp dụng <span class="input-require">*</span></label
               >
               <DxSelectBox
+                v-model="obj.WorkShift"
                 class="ms-combobox"
                 style="height: 80px"
                 placeholder=""
@@ -95,13 +104,18 @@
                 >Lý do đi muộn/về sớm
                 <span class="input-require">*</span></label
               >
-              <DxTextArea class="ms-combobox" style="height: 90px" />
+              <DxTextArea
+                v-model="obj.ResionFor"
+                class="ms-combobox"
+                style="height: 90px"
+              />
             </div>
           </div>
           <div class="dialog-body-right">
             <div class="row-body">
               <label for="">Đi muộn đầu ca (phút)</label>
               <DxNumberBox
+                v-model="obj.LateBegin"
                 class="ms-combobox text-right"
                 format="#,##0.##"
                 :value="0"
@@ -112,6 +126,7 @@
             <div class="row-body">
               <label for="">Về sớm giữa ca (phút)</label>
               <DxNumberBox
+                v-model="obj.EarlyCenter"
                 class="ms-combobox text-right"
                 format="#,##0.##"
                 :value="0"
@@ -122,6 +137,7 @@
             <div class="row-body">
               <label for="">Đến muộn giữa ca (phút)</label>
               <DxNumberBox
+                v-model="obj.LateCenter"
                 class="ms-combobox text-right"
                 format="#,##0.##"
                 :value="0"
@@ -132,6 +148,7 @@
             <div class="row-body">
               <label for="">Về sớm cuối ca (phút)</label>
               <DxNumberBox
+                v-model="obj.EarlyEnd"
                 class="ms-combobox text-right"
                 format="#,##0.##"
                 :value="0"
@@ -144,6 +161,7 @@
                 >Người duyệt <span class="input-require">*</span></label
               >
               <DxSelectBox
+                v-model="obj.ApprovedBy"
                 class="ms-combobox"
                 placeholder=""
                 :search-enabled="true"
@@ -155,6 +173,7 @@
             <div class="row-body" style="margin: 60px 0">
               <label for="">Người liên quan</label>
               <DxSelectBox
+                v-model="obj.PersionRelation"
                 class="ms-combobox"
                 style="height: 80px"
                 placeholder=""
@@ -166,13 +185,18 @@
             </div>
             <div class="row-body" style="margin: 90px 0 60px 0">
               <label for="">Ghi chú</label>
-              <DxTextArea class="ms-combobox" style="height: 80px" />
+              <DxTextArea
+                v-model="obj.Note"
+                class="ms-combobox"
+                style="height: 80px"
+              />
             </div>
             <div class="row-body">
               <label for=""
                 >Trạng thái <span class="input-require">*</span></label
               >
               <DxSelectBox
+                v-model="obj.Status"
                 class="ms-combobox"
                 placeholder=""
                 :search-enabled="true"
@@ -191,7 +215,12 @@
             bgcolor="bg-color-filter"
             >Hủy</ms-button
           >
-          <ms-button class="btn-apply" bgcolor="bg-color">Lưu</ms-button>
+          <ms-button
+            @buttonEvent="btnAddOnClick"
+            class="btn-apply"
+            bgcolor="bg-color"
+            >Lưu</ms-button
+          >
         </div>
       </div>
     </div>
@@ -223,15 +252,31 @@ export default {
     ishide: {
       type: Boolean,
     },
+    childEnitites: {
+      type: Object,
+    },
+    addOrEditChild: {
+      type: String,
+    },
   },
   methods: {
+    btnAddOnClick() {
+      if (this.addOrEditChild == "Add") {
+        this.$emit("eventAdd", this.obj);
+        this.btnCancelOnClick();
+      }
+    },
     // Truyền boolean đóng form chi tiết
     btnCancelOnClick() {
       this.$emit("closeForm", true);
     },
   },
+  updated() {
+    this.obj = this.childEnitites;
+  },
   data() {
     return {
+      obj: Object,
       products: [
         {
           id: 1,
@@ -247,7 +292,7 @@ export default {
         },
       ],
       values: ["value1", "value2"],
-      time: new Date(),
+      time: "18/07/1999",
       lang: {
         formatLocale: {
           firstDayOfWeek: 1,

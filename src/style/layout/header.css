@@ -40,19 +40,19 @@
 
 .nav-item:nth-child(4) {
     border-radius: 50px;
-    background: #FA6000;
+    background: var(--button-primary-normal-bg-color);
     color: #fff !important;
 }
 
 .nav-item:hover {
     border-radius: 50px;
-    background: #FA6000;
+    background: var(--button-primary-hover-bg-color);
     color: #fff !important;
 }
 
 .nav-item:focus {
     border-radius: 50px;
-    background: #FA6000;
+    background: var(--button-primary-focus-bg-color);
     color: #fff !important;
 }
 

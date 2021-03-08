@@ -3,7 +3,7 @@
     <div class="filter-content">
       <div class="header-filter">
         <div class="header-filter-text">Bộ lọc</div>
-        <div @click="closeFilter()" class="header-close"><i class="fas fa-times"></i></div>
+        <div @click="closeFilter()" class="header-close"><i class="close-icon"></i></div>
       </div>
       <div class="abc">
         <ms-input
@@ -32,7 +32,7 @@
 <script>
 import MsButton from "../button/msButton.vue";
 import msInput from "../input/msInput.vue";
-import service from "@/components/grid/data.js";
+import service from "../../data.js";
 export default {
   components: { msInput, MsButton },
   props: {
