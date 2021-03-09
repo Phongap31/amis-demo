@@ -9,8 +9,12 @@
       <div class="dialog-content">
         <div class="dialog-header">
           <div class="dialog-header-title">
-            <div v-if="addOrEditChild=='Add'">Thêm đơn <span class="sub-title">- Đi muộn/Về sớm</span></div>
-            <div v-if="addOrEditChild=='Edit'">Sửa đơn <span class="sub-title">- Đi muộn/Về sớm</span></div>
+            <div v-if="addOrEditChild == 'Add'">
+              Thêm đơn <span class="sub-title">- Đi muộn/Về sớm</span>
+            </div>
+            <div v-if="addOrEditChild == 'Edit'">
+              Sửa đơn <span class="sub-title">- Đi muộn/Về sớm</span>
+            </div>
           </div>
           <div class="dialog-header-close">
             <div v-on:click="btnCancelOnClick">
@@ -33,7 +37,11 @@
                 :data-source="names"
                 display-expr="value"
                 value-expr="value"
-              />
+              >
+                <DxValidator>
+                  <DxRequiredRule message="This field must required" />
+                </DxValidator>
+              </DxSelectBox>
             </div>
             <div class="row-body">
               <label for=""
@@ -52,8 +60,11 @@
               <date-picker
                 v-model="obj.HireDate"
                 class="ms-combobox"
+                type="date"
                 format="DD/MM/YYYY"
+                valueType="format"
                 :lang="lang"
+                
               ></date-picker>
             </div>
             <div class="row-body">
@@ -61,6 +72,10 @@
               <date-picker
                 v-model="obj.FromDate"
                 class="ms-combobox"
+                type="date"
+                format="DD/MM/YYYY"
+                valueType="format"
+                :lang="lang"
               ></date-picker>
             </div>
             <div class="row-body">
@@ -70,6 +85,10 @@
               <date-picker
                 v-model="obj.ToDate"
                 class="ms-combobox"
+                type="date"
+                format="DD/MM/YYYY"
+                valueType="format"
+                :lang="lang"
               ></date-picker>
             </div>
             <div class="row-body" style="margin: 60px 0">
@@ -82,7 +101,7 @@
                 :search-enabled="false"
                 :data-source="days"
                 display-expr="value"
-                value-expr="id"
+                value-expr="value"
               />
             </div>
             <div class="row-body" style="margin: 90px 0">
@@ -98,9 +117,13 @@
                 :data-source="names"
                 display-expr="value"
                 value-expr="id"
-              />
+              >
+                <DxValidator>
+                  <DxRequiredRule message="This field must required" />
+                </DxValidator>
+              </DxSelectBox>
             </div>
-            <div class="row-body" style="margin: 90px 0">
+            <div class="row-body" style="margin: 90px 0 40px 0">
               <label for=""
                 >Lý do đi muộn/về sớm
                 <span class="input-require">*</span></label
@@ -109,8 +132,13 @@
                 v-model="obj.ResionFor"
                 class="ms-combobox"
                 style="height: 90px"
-              />
+              >
+                <DxValidator>
+                  <DxRequiredRule message="This field must required" />
+                </DxValidator>
+              </DxTextArea>
             </div>
+            <br />
           </div>
           <div class="dialog-body-right">
             <div class="row-body">
@@ -168,8 +196,12 @@
                 :search-enabled="true"
                 :data-source="names"
                 display-expr="value"
-                value-expr="id"
-              />
+                value-expr="value"
+              >
+                <DxValidator>
+                  <DxRequiredRule message="This field must required" />
+                </DxValidator>
+              </DxSelectBox>
             </div>
             <div class="row-body" style="margin: 60px 0">
               <label for="">Người liên quan</label>
@@ -181,7 +213,7 @@
                 :search-enabled="true"
                 :data-source="names"
                 display-expr="value"
-                value-expr="id"
+                value-expr="value"
               />
             </div>
             <div class="row-body" style="margin: 90px 0 60px 0">
@@ -203,8 +235,12 @@
                 :search-enabled="true"
                 :data-source="status"
                 display-expr="value"
-                value-expr="id"
-              />
+                value-expr="value"
+              >
+                <DxValidator>
+                  <DxRequiredRule message="This field must required" />
+                </DxValidator>
+              </DxSelectBox>
             </div>
           </div>
         </div>
@@ -229,6 +265,29 @@
 </template>
 
 <script>
+// import {
+//   DxGroupItem,
+//   DxSimpleItem,
+//   DxButtonItem,
+//   DxLabel,
+//   DxRequiredRule,
+//   DxCompareRule,
+//   DxRangeRule,
+//   DxStringLengthRule,
+//   DxPatternRule,
+//   DxEmailRule,
+//   DxAsyncRule,
+// } from "devextreme-vue/form";
+import {
+  DxValidator,
+  DxRequiredRule,
+  DxCompareRule,
+  DxEmailRule,
+  DxPatternRule,
+  DxStringLengthRule,
+  DxRangeRule,
+  DxAsyncRule,
+} from "devextreme-vue/validator";
 import { DxNumberBox } from "devextreme-vue/number-box";
 import DxTagBox from "devextreme-vue/tag-box";
 import DxTextBox from "devextreme-vue/text-box";
@@ -247,6 +306,25 @@ export default {
     DxTextArea,
     DxNumberBox,
     DxTagBox,
+    // DxGroupItem,
+    // DxSimpleItem,
+    // DxButtonItem,
+    // DxLabel,
+    // DxRequiredRule,
+    // DxCompareRule,
+    // DxRangeRule,
+    // DxStringLengthRule,
+    // DxPatternRule,
+    // DxEmailRule,
+    // DxAsyncRule,
+    DxValidator,
+    DxRequiredRule,
+    DxCompareRule,
+    DxEmailRule,
+    DxPatternRule,
+    DxStringLengthRule,
+    DxRangeRule,
+    DxAsyncRule,
   },
   name: "lateInEarlyOutDetail",
   props: {
@@ -259,7 +337,7 @@ export default {
     },
     addOrEditChild: {
       type: String,
-      require: true
+      require: true,
     },
   },
   methods: {
@@ -268,7 +346,7 @@ export default {
         this.$emit("eventAdd", this.obj);
         this.btnCancelOnClick();
       }
-      if(this.addOrEditChild == "Edit"){
+      if (this.addOrEditChild == "Edit") {
         this.$emit("eventEdit", this.obj);
         this.btnCancelOnClick();
       }

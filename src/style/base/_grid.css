@@ -222,6 +222,14 @@
     padding: 14px !important;
 }
 
+#ms-grid .dx-selection>td {
+    background-color: var(--primary-bg) !important;
+}
+
+.dx-select-checkbox .dx-checkbox-icon {
+    border: 2px solid #737888 !important;
+}
+
 
 /* .dx-datagrid-rowsview .dx-row.dx-row-lines:hover>td,
 .dx-datagrid-rowsview .dx-row.dx-row-lines:hover {

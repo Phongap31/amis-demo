@@ -8,10 +8,10 @@
       :show-borders="true"
       :hoverStateEnabled="true"
       :show-row-lines="true"
-      height="calc(100vh - 200px)"
+      height="calc(100vh - 195px)"
       :onContentReady="onContentReady"
     >
-      <DxSelection :deferred="false" mode="multiple" />
+      <DxSelection :deferred="false" mode="multiple" show-check-boxes-mode='always' select-all-mode='page'/>
       <DxColumnFixing :enabled="true" />
       <!-- <DxPaging :page-size="10"/> -->
       <!-- <DxPager
@@ -33,7 +33,6 @@
         v-for="(column, index) in titles"
         :key="index"
         :width="200"
-        alignment="center"
         :caption="column.Caption"
         :data-field="column.FieldName"
       />
@@ -50,16 +49,17 @@
       />
       <template #actions="{ data }">
         <div :class="{ isHide: false }" class="col-actions">
-          <div @click="clickOnRemove(data)" class="remove-icon"></div>
+          
           <div
             @click="clickOnEdit(data)"
             class="edit-icon"
           ></div>
+          <div @click="clickOnRemove(data)" class="remove-icon"></div>
         </div>
       </template>
     </DxDataGrid>
     <div class="paging">
-      <div class="paging-left">Tổng số bản ghi: <b>0</b></div>
+      <div class="paging-left">Tổng số bản ghi: <b>{{employees.length}}</b></div>
       <div class="paging-right">
         <select class="page-size" name="" id="">
           <option value="">5</option>
@@ -67,7 +67,7 @@
           <option value="">50</option>
           <option value="">100</option>
         </select>
-        <div class="from-to">Từ <b>0</b> đến <b>0</b> bản ghi</div>
+        <div class="from-to">Từ <b>1</b> đến <b>{{employees.length}}</b> bản ghi</div>
         <div class="pre-icon"></div>
         <div class="next-icon"></div>
       </div>

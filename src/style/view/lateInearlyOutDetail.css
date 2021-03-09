@@ -65,9 +65,9 @@
     position: fixed;
     border-radius: 5px;
     border-top: none;
-    width: 1000px;
+    width: 900px;
     background-color: #fff;
-    left: calc(50% - 495px);
+    left: calc(50% - 445px);
     top: calc(50% - 300px);
 }
 
@@ -80,14 +80,17 @@
 
 .dialog-body-left {
     width: 50%;
+    height: auto;
     position: relative;
-    margin-right: 20px;
+    margin-right: 10px;
+    margin-bottom: 20px;
 }
 
 .dialog-body-right {
     width: 50%;
     position: relative;
-    margin-left: 20px;
+    margin-left: 10px;
+    margin-bottom: 20px;
 }
 
 .row-body {
@@ -99,7 +102,7 @@
 .ms-combobox {
     position: absolute;
     right: 0;
-    width: 250px;
+    width: 230px;
 }
 
 .dx-dropdownlist-popup-wrapper,
