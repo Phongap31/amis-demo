@@ -222,42 +222,50 @@ const titles = [{
         ID: 1,
         Caption: "Người duyệt",
         FieldName: "ApprovedBy",
-        HeaderTemplate: "FirstName"
+        HeaderTemplate: "FirstName",
+        isChecked: false,
     },
     {
         ID: 2,
         Caption: "Ngày lập",
-        FieldName: "HireDate"
+        FieldName: "HireDate",
+        isChecked: false,
     },
     {
         ID: 3,
         Caption: "Đi muộn đầu ca",
-        FieldName: "LateBegin"
+        FieldName: "LateBegin",
+        isChecked: false,
     },
     {
         ID: 4,
         Caption: "Về sớm giữa ca",
-        FieldName: "EarlyCenter"
+        FieldName: "EarlyCenter",
+        isChecked: false,
     },
     {
         ID: 5,
         Caption: "Vào muộn giữa ca",
-        FieldName: "LateCenter"
+        FieldName: "LateCenter",
+        isChecked: false,
     },
     {
         ID: 6,
         Caption: "Về sớm cuối ca",
-        FieldName: "EarlyEnd"
+        FieldName: "EarlyEnd",
+        isChecked: false,
     },
     {
         ID: 7,
         Caption: "Áp dụng cho",
-        FieldName: "ApplyFor"
+        FieldName: "ApplyFor",
+        isChecked: false,
     },
     {
         ID: 8,
         Caption: "Trạng thái",
-        FieldName: "Status"
+        FieldName: "Status",
+        isChecked: false,
     }
 ]
 

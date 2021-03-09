@@ -9,7 +9,8 @@
       <div class="dialog-content">
         <div class="dialog-header">
           <div class="dialog-header-title">
-            Thêm đơn <span class="sub-title">- Đi muộn/Về sớm</span>
+            <div v-if="addOrEditChild=='Add'">Thêm đơn <span class="sub-title">- Đi muộn/Về sớm</span></div>
+            <div v-if="addOrEditChild=='Edit'">Sửa đơn <span class="sub-title">- Đi muộn/Về sớm</span></div>
           </div>
           <div class="dialog-header-close">
             <div v-on:click="btnCancelOnClick">
@@ -31,7 +32,7 @@
                 :search-enabled="true"
                 :data-source="names"
                 display-expr="value"
-                value-expr="id"
+                value-expr="value"
               />
             </div>
             <div class="row-body">
@@ -94,7 +95,7 @@
                 style="height: 80px"
                 placeholder=""
                 :search-enabled="true"
-                :data-source="products"
+                :data-source="names"
                 display-expr="value"
                 value-expr="id"
               />
@@ -165,7 +166,7 @@
                 class="ms-combobox"
                 placeholder=""
                 :search-enabled="true"
-                :data-source="products"
+                :data-source="names"
                 display-expr="value"
                 value-expr="id"
               />
@@ -178,7 +179,7 @@
                 style="height: 80px"
                 placeholder=""
                 :search-enabled="true"
-                :data-source="products"
+                :data-source="names"
                 display-expr="value"
                 value-expr="id"
               />
@@ -254,9 +255,11 @@ export default {
     },
     childEnitites: {
       type: Object,
+      default: () => {},
     },
     addOrEditChild: {
       type: String,
+      require: true
     },
   },
   methods: {
@@ -339,7 +342,6 @@ export default {
           value: "Chủ nhật",
         },
       ],
-      values: ["value1", "value2"],
       lang: {
         formatLocale: {
           firstDayOfWeek: 1,

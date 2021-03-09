@@ -14,12 +14,22 @@
         ></ms-input>
       </div>
       <div class="body-filter">
-          <div v-for="(title, index) in titles" :key="index">
+          <div v-for="(title, index) in titles" :key="index" :class="{'filter-background': title.isChecked}">
           <label class="container-filter"
             >{{title.Caption}}
             <input type="checkbox" />
-            <span class="checkmark-filter"></span>
+            <span @click="title.isChecked = !title.isChecked" class="checkmark-filter"></span>
           </label>
+          <div class="filter-choose" v-if="title.isChecked">
+            <DxSelectBox
+                ref="name"
+                placeholder=""
+                class="filter-combobox"
+                :search-enabled="true"
+                :data-source="names"
+              />
+            <DxTextBox class="filter-combobox"/>
+          </div>
         </div>
       </div>
       <div class="footer-filter">
@@ -33,8 +43,12 @@
 import MsButton from "../button/msButton.vue";
 import msInput from "../input/msInput.vue";
 import service from "../../data.js";
+import DxSelectBox from "devextreme-vue/select-box";
+import DxTextBox from "devextreme-vue/text-box";
+
+
 export default {
-  components: { msInput, MsButton },
+  components: { msInput, MsButton,DxSelectBox,DxTextBox },
   props: {
     open: {
       type: Boolean,
@@ -50,6 +64,9 @@ export default {
     closeFilter(){
       document.getElementById('ms-grid').style.width = '100%';
       this.$emit('closeFilter', false);
+    },
+    test(){
+      this.isChecked = !this.isChecked
     }
   }
 };

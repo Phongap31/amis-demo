@@ -160,3 +160,26 @@
     -ms-transform: rotate(45deg);
     transform: rotate(45deg);
 }
+
+.filter-background {
+    background-color: var(--combobox-highlight-bg-color);
+    padding: 0 0 10px 0;
+    border-radius: 5px;
+}
+
+
+/* .filter-choose {
+    background-color: var(--combobox-highlight-bg-color);
+    padding: 20px 5px;
+} */
+
+.filter-combobox {
+    margin: 5px 0;
+}
+
+.ms-filter .dx-texteditor.dx-editor-outlined {
+    border-color: var(--button-primary-normal-border-color);
+    margin-bottom: 10px;
+    width: 180px;
+    margin: 0 auto 10px auto;
+}
