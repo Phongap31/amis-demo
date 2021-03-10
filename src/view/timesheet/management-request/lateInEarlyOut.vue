@@ -1,7 +1,7 @@
 <template>
   <div class="late-in-early-out">
-    <div class="top-content">
-      <div class="top-content-left">
+    <div :class="{isHide: isMultiRemove}" class="top-content">
+      <div  class="top-content-left">
         <div class="content-left-text">Đơn đi muộn về sớm</div>
         <div class="content-status">
           <div class="status-text">Trạng thái:</div>
@@ -22,6 +22,7 @@
         :childEnitites="entities"
         :addOrEditChild="addOrEdit"
       />
+      
       <div class="top-content-right">
         <ms-input
           class="input1"
@@ -44,11 +45,21 @@
         ></ms-button>
       </div>
     </div>
+    <div :class="{isHide: !isMultiRemove}" class="multi-remove">
+        <div>Đã chon: <b>{{activeMultiRemove.length}}</b></div>
+        <div class="clear-selected">Bỏ chọn</div>
+        <ms-button
+          class="btn-add"
+          bgcolor="bg-color"
+          icon="target-icon"
+          >Xóa</ms-button
+        >
+      </div>
     <div class="content-feature">
-      <ms-grid @openEditForm="callEditForm">
-        <!-- <template v-slot:FirstName="{data}">
-          <div style="color: red;">
-            {{data.data.column.caption}}
+      <ms-grid @openEditForm="callEditForm" @selectionChange="callSelectionChange">
+        <!-- <template v-slot:HireDate="{data}">
+          <div style="text-align: center">
+            {{data.data.value}}
           </div>
         </template> -->
       </ms-grid>
@@ -77,8 +88,10 @@ export default {
       employees: service.getEmployees(),
       filterOpen: false,
       isHideForm: true,
+      isMultiRemove: false,
       addOrEdit: String,
       entities: Object,
+      activeMultiRemove: [],
       idForEdit: String,
       newApp: {
         ID: 13,
@@ -150,6 +163,12 @@ export default {
         text: "Sửa đơn thành công!!!",
         speed: 1000,
       });
+    },
+
+    callSelectionChange(val){
+      this.activeMultiRemove = val
+      if(this.activeMultiRemove.length == 0) this.isMultiRemove = false
+      else this.isMultiRemove = true
     },
 
     //Đóng mở form lọc cột

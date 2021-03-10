@@ -8,10 +8,18 @@
       :show-borders="true"
       :hoverStateEnabled="true"
       :show-row-lines="true"
+      :selected-row-keys.sync="selectedRowKeys"
       height="calc(100vh - 195px)"
       :onContentReady="onContentReady"
+      key-expr="ID"
+      @selection-changed="onSelectionChanged"
     >
-      <DxSelection :deferred="false" mode="multiple" show-check-boxes-mode='always' select-all-mode='page'/>
+      <DxSelection
+        :deferred="false"
+        mode="multiple"
+        show-check-boxes-mode="always"
+        select-all-mode="page"
+      />
       <DxColumnFixing :enabled="true" />
       <!-- <DxPaging :page-size="10"/> -->
       <!-- <DxPager
@@ -38,7 +46,11 @@
       />
 
       <template #custom-header="data">
-        <slot :name="data.data.column.dataField" :data="data"></slot>
+        <!-- <slot :name="data.data.column.dataField" :data="data">
+        </slot> -->
+        <div v-if="data.data.column.dataField == 'HireDate'">
+          <div style="text-align: center">{{ data.data.value }}</div>
+        </div>
       </template>
       <DxColumn
         :width="100"
@@ -49,17 +61,17 @@
       />
       <template #actions="{ data }">
         <div :class="{ isHide: false }" class="col-actions">
-          
-          <div
-            @click="clickOnEdit(data)"
-            class="edit-icon"
-          ></div>
+          <div @click="clickOnEdit(data)" class="edit-icon"></div>
           <div @click="clickOnRemove(data)" class="remove-icon"></div>
         </div>
       </template>
     </DxDataGrid>
+
     <div class="paging">
-      <div class="paging-left">Tổng số bản ghi: <b>{{employees.length}}</b></div>
+      <div class="paging-left">
+        Tổng số bản ghi: <b>{{ employees.length }}</b>
+      </div>
+      <DxButton text="Clear Selection" />
       <div class="paging-right">
         <select class="page-size" name="" id="">
           <option value="">5</option>
@@ -67,12 +79,18 @@
           <option value="">50</option>
           <option value="">100</option>
         </select>
-        <div class="from-to">Từ <b>1</b> đến <b>{{employees.length}}</b> bản ghi</div>
+        <div class="from-to">
+          Từ <b>1</b> đến <b>{{ employees.length }}</b> bản ghi
+        </div>
         <div class="pre-icon"></div>
         <div class="next-icon"></div>
       </div>
     </div>
-    <DialogRemove :isHideDialog="isDialog" @closeFormRemove="callCloseFormRemove" @callDeleteOnClick="onRemoved"/>
+    <DialogRemove
+      :isHideDialog="isDialog"
+      @closeFormRemove="callCloseFormRemove"
+      @callDeleteOnClick="onRemoved"
+    />
     <DxPopover
       ref="popupCustome"
       :width="255"
@@ -92,10 +110,11 @@
       <div>
         <ms-input ref="searchInput" placeholder="Tìm kiếm"></ms-input>
       </div>
-      <draggable class="custome-body"
+      <draggable
+        class="custome-body"
         :titles="titles"
         ghost-class="ghost"
-        :move="checkMove"
+      
         @start="dragging = true"
         @end="dragging = false"
       >
@@ -106,7 +125,7 @@
         >
           <label class="container"
             >{{ title.Caption }}
-            <input type="checkbox" checked="checked"/>
+            <input type="checkbox" checked="checked" />
             <span class="checkmark"></span>
           </label>
           <div class="menu-icon"></div>
@@ -130,7 +149,8 @@ import {
   DxPager,
 } from "devextreme-vue/data-grid";
 import { DxPopover } from "devextreme-vue/popover";
-import DialogRemove from './dialogRemove'
+import DxButton from "devextreme-vue/button";
+import DialogRemove from "./dialogRemove";
 import service from "../../data.js";
 import draggable from "vuedraggable";
 
@@ -144,8 +164,9 @@ export default {
     DxSelection,
     DxPopover,
     DxPager,
+    DxButton,
     DialogRemove,
-    draggable
+    draggable,
   },
   data() {
     return {
@@ -155,6 +176,7 @@ export default {
       isCustome: false,
       isAction: false,
       isDialog: true,
+      selectedRowKeys: [],
       pageSizes: [5, 10, 50, 100],
       animationConfig: {
         show: {
@@ -172,18 +194,26 @@ export default {
           to: 0,
         },
       },
-      idForRemove: String
+      idForRemove: String,
     };
   },
   computed: {
     draggingInfo() {
       return this.dragging ? "under drag" : "";
-    }
+    },
   },
   methods: {
+    test(d) {
+      console.log(d);
+    },
+
+    onSelectionChanged(){
+      console.log(this.selectedRowKeys)
+      this.$emit('selectionChange', this.selectedRowKeys)
+    },
     // Mở form Edit
-    clickOnEdit(data){
-      this.$emit('openEditForm', data.row.data)
+    clickOnEdit(data) {
+      this.$emit("openEditForm", data.row.data);
     },
     // Mở form xóa đơn và lấy ID
     clickOnRemove(data) {
@@ -192,8 +222,10 @@ export default {
     },
 
     //Thực hiện xóa theo ID
-    onRemoved(){
-      this.employees = this.employees.filter(emp => emp.ID != this.idForRemove)
+    onRemoved() {
+      this.employees = this.employees.filter(
+        (emp) => emp.ID != this.idForRemove
+      );
       this.$notify({
         group: "foo",
         type: "success",
@@ -219,9 +251,9 @@ export default {
       });
     },
 
-    callCloseFormRemove(value){
-      this.isDialog = value
-    }
+    callCloseFormRemove(value) {
+      this.isDialog = value;
+    },
   },
 };
 </script>

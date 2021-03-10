@@ -3,9 +3,11 @@
     padding: 20px;
 }
 
+.multi-remove,
 .top-content {
     display: flex;
     align-items: center;
+    height: 30px;
 }
 
 .top-content-left {

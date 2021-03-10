@@ -64,7 +64,7 @@
                 format="DD/MM/YYYY"
                 valueType="format"
                 :lang="lang"
-                
+                confirm
               ></date-picker>
             </div>
             <div class="row-body">
@@ -333,11 +333,12 @@ export default {
     },
     childEnitites: {
       type: Object,
-      default: () => {},
+      default: () => [],
     },
     addOrEditChild: {
       type: String,
       require: true,
+      default: () => []
     },
   },
   methods: {

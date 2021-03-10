@@ -1,7 +1,7 @@
 <template>
     <div  class="ms-input">
         <div v-if="icon" :class="icon"></div>
-        <input :width="width" ref="input" :type="type" :placeholder="placeholder" >
+        <input :width="width" :value="value" @input="emit" ref="input" :type="type" :placeholder="placeholder" >
     </div>
 </template>
 
@@ -21,6 +21,14 @@ export default {
         },
         width: {
             type: String
+        },
+        value: {
+            type: String
+        }
+    },
+    methods:{
+        emit(e){
+            this.$emit("update:value",e.target.value)
         }
     }
 }

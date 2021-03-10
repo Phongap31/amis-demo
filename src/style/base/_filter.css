@@ -37,6 +37,7 @@
     padding: 0 30px;
     height: 320px;
     overflow-y: scroll;
+    margin-right: 25px;
 }
 
 .footer-filter {
