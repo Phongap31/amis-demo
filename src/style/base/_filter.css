@@ -37,7 +37,7 @@
     padding: 0 30px;
     height: 320px;
     overflow-y: scroll;
-    margin-right: 25px;
+    /* margin-right: 25px; */
 }
 
 .footer-filter {
@@ -129,6 +129,7 @@
 
 .container-filter input:checked~.checkmark-filter {
     background-color: #FA6001;
+    border: none;
 }
 
 

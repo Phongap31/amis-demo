@@ -11,6 +11,7 @@
       :selected-row-keys.sync="selectedRowKeys"
       height="calc(100vh - 195px)"
       :onContentReady="onContentReady"
+      :ref="dataGridRefName"
       key-expr="ID"
       @selection-changed="onSelectionChanged"
     >
@@ -21,12 +22,6 @@
         select-all-mode="page"
       />
       <DxColumnFixing :enabled="true" />
-      <!-- <DxPaging :page-size="10"/> -->
-      <!-- <DxPager
-      :show-page-size-selector="true"
-      :allowed-page-sizes="pageSizes"
-      :show-info="true"
-    /> -->
       <DxColumn
         :width="60"
         :fixed="true"
@@ -71,7 +66,6 @@
       <div class="paging-left">
         Tổng số bản ghi: <b>{{ employees.length }}</b>
       </div>
-      <DxButton text="Clear Selection" />
       <div class="paging-right">
         <select class="page-size" name="" id="">
           <option value="">5</option>
@@ -168,10 +162,19 @@ export default {
     DialogRemove,
     draggable,
   },
+  props: ['isClear'],
+  watch: {
+    isClear: function(){
+      const dataGrid = this.$refs[this.dataGridRefName].instance;
+
+      dataGrid.clearSelection();
+    }
+  },
   data() {
     return {
       employees: service.getEmployees(),
       titles: service.getTitles(),
+      dataGridRefName: 'dataGrid',
       dragging: false,
       isCustome: false,
       isAction: false,
@@ -207,9 +210,10 @@ export default {
       console.log(d);
     },
 
-    onSelectionChanged(){
-      console.log(this.selectedRowKeys)
-      this.$emit('selectionChange', this.selectedRowKeys)
+    
+
+    onSelectionChanged({selectedRowsData}){
+      this.$emit('selectionChange', this.selectedRowKeys, selectedRowsData)
     },
     // Mở form Edit
     clickOnEdit(data) {

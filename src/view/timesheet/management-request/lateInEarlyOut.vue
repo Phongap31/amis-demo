@@ -1,7 +1,7 @@
 <template>
   <div class="late-in-early-out">
-    <div :class="{isHide: isMultiRemove}" class="top-content">
-      <div  class="top-content-left">
+    <div :class="{ isHide: isMultiRemove }" class="top-content">
+      <div class="top-content-left">
         <div class="content-left-text">Đơn đi muộn về sớm</div>
         <div class="content-status">
           <div class="status-text">Trạng thái:</div>
@@ -22,7 +22,7 @@
         :childEnitites="entities"
         :addOrEditChild="addOrEdit"
       />
-      
+
       <div class="top-content-right">
         <ms-input
           class="input1"
@@ -45,18 +45,25 @@
         ></ms-button>
       </div>
     </div>
-    <div :class="{isHide: !isMultiRemove}" class="multi-remove">
-        <div>Đã chon: <b>{{activeMultiRemove.length}}</b></div>
-        <div class="clear-selected">Bỏ chọn</div>
-        <ms-button
-          class="btn-add"
-          bgcolor="bg-color"
-          icon="target-icon"
-          >Xóa</ms-button
-        >
+    <div :class="{ isHide: !isMultiRemove }" class="multi-remove">
+      <div>
+        Đã chon: <b>{{ activeMultiRemove.length }}</b>
       </div>
+      <div @click="clearSelection" class="clear-selected">Bỏ chọn</div>
+      <ms-button
+      @buttonEvent="clickOnMultiRemove"
+        class="btn-multi-remove"
+        bgcolor="bg-color-filter"
+        icon="remove-icon1"
+        >Xóa</ms-button
+      >
+    </div>
     <div class="content-feature">
-      <ms-grid @openEditForm="callEditForm" @selectionChange="callSelectionChange">
+      <ms-grid
+        :isClear="isClear"
+        @openEditForm="callEditForm"
+        @selectionChange="callSelectionChange"
+      >
         <!-- <template v-slot:HireDate="{data}">
           <div style="text-align: center">
             {{data.data.value}}
@@ -77,20 +84,21 @@ import MsFilter from "@/components/filter/msFilter.vue";
 import MsGrid from "@/components/grid/msGrid.vue";
 import msInput from "@/components/input/msInput.vue";
 import DxSelectBox from "devextreme-vue/select-box";
-import FormDetail from './lateInEarlyOutDetail';
+import FormDetail from "./lateInEarlyOutDetail";
 import service from "@/data.js";
 
-
 export default {
-  components: { msInput, DxSelectBox, MsButton, MsGrid, MsFilter,FormDetail },
+  components: { msInput, DxSelectBox, MsButton, MsGrid, MsFilter, FormDetail },
   data() {
     return {
       employees: service.getEmployees(),
       filterOpen: false,
       isHideForm: true,
       isMultiRemove: false,
+      isClear: false,
       addOrEdit: String,
       entities: Object,
+      activeDataRemove: Array,
       activeMultiRemove: [],
       idForEdit: String,
       newApp: {
@@ -127,7 +135,7 @@ export default {
     },
 
     //Thực hiện thêm mới
-    eventAddOn(obj){
+    eventAddOn(obj) {
       this.employees.push(obj);
       this.$notify({
         group: "foo",
@@ -151,10 +159,11 @@ export default {
       // });
     },
 
-    eventEditOn(data){
-      this.employees = this.employees.map(emp => {
-        if(emp.ID == data.ID){
-          emp = data
+    //Thực hiện sửa
+    eventEditOn(data) {
+      this.employees = this.employees.map((emp) => {
+        if (emp.ID == data.ID) {
+          emp = data;
         }
       });
       this.$notify({
@@ -165,10 +174,32 @@ export default {
       });
     },
 
-    callSelectionChange(val){
-      this.activeMultiRemove = val
-      if(this.activeMultiRemove.length == 0) this.isMultiRemove = false
-      else this.isMultiRemove = true
+    //Multi Selection
+    callSelectionChange(val, val2) {
+      this.activeMultiRemove = val;
+      this.activeDataRemove = val2;
+      console.log(this.activeDataRemove);
+      console.log(this.activeMultiRemove);
+      if (this.activeMultiRemove.length == 0) this.isMultiRemove = false;
+      else this.isMultiRemove = true;
+    },
+
+    clearSelection() {
+      this.isClear = !this.isClear;
+    },
+
+    //Xóa nhiều bản ghi
+    clickOnMultiRemove(){
+      for(var i=0;i<this.activeDataRemove.length; i++){
+        this.employees = this.employees.filter(emp => emp.ID != this.activeMultiRemove[i]);
+      }
+      console.log(this.employees);
+      this.$notify({
+        group: "foo",
+        type: "success",
+        text: `Xóa thành công ${this.activeMultiRemove.length} bản ghi!!!`,
+        speed: 1000,
+      });
     },
 
     //Đóng mở form lọc cột

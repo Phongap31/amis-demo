@@ -54,6 +54,7 @@
     display: flex;
     align-items: center;
     position: relative;
+    cursor: pointer;
 }
 
 .custome-element:hover {
@@ -121,8 +122,8 @@
     display: block;
     position: relative;
     padding-left: 30px;
-    padding-top: 5px;
-    padding-bottom: 5px;
+    /* padding-top: 5px;
+    padding-bottom: 5px; */
     margin-bottom: 12px;
     margin-top: 10px;
     cursor: pointer;
@@ -149,7 +150,7 @@
 
 .checkmark {
     position: absolute;
-    top: 6px;
+    top: 1px;
     left: 2px;
     height: 18px;
     width: 18px;
@@ -170,6 +171,7 @@
 
 .container input:checked~.checkmark {
     background-color: #FA6001;
+    border: none;
 }
 
 
@@ -192,8 +194,8 @@
 /* Style the checkmark/indicator */
 
 .container .checkmark:after {
-    left: 5px;
-    top: 1px;
+    left: 7px;
+    top: 3px;
     width: 5px;
     height: 10px;
     border: solid white;
