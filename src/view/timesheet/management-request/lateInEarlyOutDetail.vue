@@ -28,8 +28,9 @@
               <label for=""
                 >Người nộp đơn <span class="input-require">*</span></label
               >
+              <div v-if="isError" class="mi-icon-error"></div>
               <DxSelectBox
-                v-model="obj.FullName"
+                v-model="vFullName"
                 ref="name"
                 class="ms-combobox"
                 placeholder=""
@@ -37,11 +38,11 @@
                 :data-source="names"
                 display-expr="value"
                 value-expr="value"
-              >
-                <DxValidator>
+              />
+              <!-- <DxValidator>
                   <DxRequiredRule message="This field must required" />
-                </DxValidator>
-              </DxSelectBox>
+                </DxValidator> -->
+              <!-- </DxSelectBox> -->
             </div>
             <div class="row-body">
               <label for=""
@@ -53,24 +54,25 @@
                 style="background: #bbb"
               />
             </div>
-            <div class="row-body">
+            <div class="row-body row-date">
               <label for=""
                 >Ngày nộp đơn <span class="input-require">*</span></label
               >
+              <div v-if="isErrorHireDate" class="mi-icon-error"></div>
               <date-picker
-                v-model="obj.HireDate"
+                v-model="vHireDate"
                 class="ms-combobox"
                 type="date"
                 format="DD/MM/YYYY"
                 valueType="format"
                 :lang="lang"
-                confirm
               ></date-picker>
             </div>
-            <div class="row-body">
+            <div class="row-body row-date">
               <label for="">Từ ngày <span class="input-require">*</span></label>
+              <div v-if="isErrorFromDate" class="mi-icon-error"></div>
               <date-picker
-                v-model="obj.FromDate"
+                v-model="vFromDate"
                 class="ms-combobox"
                 type="date"
                 format="DD/MM/YYYY"
@@ -78,12 +80,13 @@
                 :lang="lang"
               ></date-picker>
             </div>
-            <div class="row-body">
+            <div class="row-body row-date">
               <label for=""
                 >Đến ngày <span class="input-require">*</span></label
               >
+              <div v-if="isErrorToDate" class="mi-icon-error"></div>
               <date-picker
-                v-model="obj.ToDate"
+                v-model="vToDate"
                 class="ms-combobox"
                 type="date"
                 format="DD/MM/YYYY"
@@ -108,8 +111,9 @@
               <label for=""
                 >Ca áp dụng <span class="input-require">*</span></label
               >
+              <div v-if="isErrorWorkShift" class="mi-icon-error"></div>
               <DxSelectBox
-                v-model="obj.WorkShift"
+                v-model="vWorkShift"
                 class="ms-combobox"
                 style="height: 80px"
                 placeholder=""
@@ -118,24 +122,21 @@
                 display-expr="value"
                 value-expr="id"
               >
-                <DxValidator>
-                  <DxRequiredRule message="This field must required" />
-                </DxValidator>
+               
               </DxSelectBox>
             </div>
-            <div class="row-body" style="margin: 90px 0 40px 0">
+            <div class="row-body row-textarea" style="margin: 90px 0 40px 0">
               <label for=""
                 >Lý do đi muộn/về sớm
                 <span class="input-require">*</span></label
               >
+              <div v-if="isErrorResionFor" class="mi-icon-error"></div>
               <DxTextArea
-                v-model="obj.ResionFor"
+                v-model="vResionFor"
                 class="ms-combobox"
                 style="height: 90px"
               >
-                <DxValidator>
-                  <DxRequiredRule message="This field must required" />
-                </DxValidator>
+            
               </DxTextArea>
             </div>
             <br />
@@ -189,8 +190,9 @@
               <label for=""
                 >Người duyệt <span class="input-require">*</span></label
               >
+              <div v-if="isErrorApprovedBy" class="mi-icon-error"></div>
               <DxSelectBox
-                v-model="obj.ApprovedBy"
+                v-model="vApprovedBy"
                 class="ms-combobox"
                 placeholder=""
                 :search-enabled="true"
@@ -198,9 +200,9 @@
                 display-expr="value"
                 value-expr="value"
               >
-                <DxValidator>
+                <!-- <DxValidator>
                   <DxRequiredRule message="This field must required" />
-                </DxValidator>
+                </DxValidator> -->
               </DxSelectBox>
             </div>
             <div class="row-body" style="margin: 60px 0">
@@ -228,8 +230,9 @@
               <label for=""
                 >Trạng thái <span class="input-require">*</span></label
               >
+              <div v-if="isErrorStatus" class="mi-icon-error"></div>
               <DxSelectBox
-                v-model="obj.Status"
+                v-model="vStatus"
                 class="ms-combobox"
                 placeholder=""
                 :search-enabled="true"
@@ -237,9 +240,9 @@
                 display-expr="value"
                 value-expr="value"
               >
-                <DxValidator>
+                <!-- <DxValidator>
                   <DxRequiredRule message="This field must required" />
-                </DxValidator>
+                </DxValidator> -->
               </DxSelectBox>
             </div>
           </div>
@@ -306,17 +309,7 @@ export default {
     DxTextArea,
     DxNumberBox,
     DxTagBox,
-    // DxGroupItem,
-    // DxSimpleItem,
-    // DxButtonItem,
-    // DxLabel,
-    // DxRequiredRule,
-    // DxCompareRule,
-    // DxRangeRule,
-    // DxStringLengthRule,
-    // DxPatternRule,
-    // DxEmailRule,
-    // DxAsyncRule,
+
     DxValidator,
     DxRequiredRule,
     DxCompareRule,
@@ -338,30 +331,187 @@ export default {
     addOrEditChild: {
       type: String,
       require: true,
-      default: () => []
+      default: () => [],
     },
   },
   methods: {
     btnAddOnClick() {
-      if (this.addOrEditChild == "Add") {
-        this.$emit("eventAdd", this.obj);
-        this.btnCancelOnClick();
-      }
-      if (this.addOrEditChild == "Edit") {
-        this.$emit("eventEdit", this.obj);
-        this.btnCancelOnClick();
+      if (this.validate()) {
+        if (this.addOrEditChild == "Add") {
+          this.$emit("eventAdd", this.obj);
+          this.btnCancelOnClick();
+        }
+        if (this.addOrEditChild == "Edit") {
+          this.$emit("eventEdit", this.obj);
+          this.btnCancelOnClick();
+        }
       }
     },
     // Truyền boolean đóng form chi tiết
     btnCancelOnClick() {
       this.$emit("closeForm", true);
     },
+
+    validate() {
+      let result = true;
+      if (this.obj.FullName == "") {
+        this.isError = true;
+        result = false;
+      }
+      if (this.obj.HireDate == null) {
+        this.isErrorHireDate = true;
+        result = false;
+      }
+      if (this.obj.FromDate == null) {
+        this.isErrorFromDate = true;
+        result = false;
+      }
+      if (this.obj.ToDate == null) {
+        this.isErrorToDate = true;
+        result = false;
+      }
+      if (this.obj.WorkShift == '') {
+        this.isErrorWorkShift = true;
+        result = false;
+      }
+      if (this.obj.ResionFor == '') {
+        this.isErrorResionFor = true;
+        result = false;
+      }
+      if (!this.obj.ApprovedBy) {
+        this.isErrorApprovedBy = true;
+        result = false;
+      }
+      if (!this.obj.Status) {
+        this.isErrorStatus = true;
+        result = false;
+      }
+      
+
+      return result;
+    },
   },
   updated() {
     this.obj = this.childEnitites;
   },
+
+  //todo
+  computed: {
+    vFullName: {
+      set(value) {
+        if (!value) {
+          this.isError = true;
+        } else {
+          this.isError = false;
+        }
+        this.obj.FullName = value;
+      },
+      get() {
+        return this.obj.FullName;
+      },
+    },
+    vHireDate: {
+      set(value) {
+        if (!value) {
+          this.isErrorHireDate = true;
+        } else {
+          this.isErrorHireDate = false;
+        }
+        this.obj.HireDate = value;
+      },
+      get() {
+        return this.obj.HireDate;
+      },
+    },
+    vFromDate: {
+      set(value) {
+        if (!value) {
+          this.isErrorFromDate = true;
+        } else {
+          this.isErrorFromDate = false;
+        }
+        this.obj.FromDate = value;
+      },
+      get() {
+        return this.obj.FromDate;
+      },
+    },
+    vToDate: {
+      set(value) {
+        if (!value) {
+          this.isErrorToDate = true;
+        } else {
+          this.isErrorToDate = false;
+        }
+        this.obj.ToDate = value;
+      },
+      get() {
+        return this.obj.ToDate;
+      },
+    },
+    vWorkShift: {
+      set(value) {
+        if (!value) {
+          this.isErrorWorkShift = true;
+        } else {
+          this.isErrorWorkShift = false;
+        }
+        this.obj.WorkShift = value;
+      },
+      get() {
+        return this.obj.WorkShift;
+      },
+    },
+    vResionFor: {
+      set(value) {
+        if (!value) {
+          this.isErrorResionFor = true;
+        } else {
+          this.isErrorResionFor = false;
+        }
+        this.obj.ResionFor = value;
+      },
+      get() {
+        return this.obj.ResionFor;
+      },
+    },
+    vApprovedBy: {
+      set(value) {
+        if (!value) {
+          this.isErrorApprovedBy = true;
+        } else {
+          this.isErrorApprovedBy = false;
+        }
+        this.obj.ApprovedBy = value;
+      },
+      get() {
+        return this.obj.ApprovedBy;
+      },
+    },
+    vStatus: {
+      set(value) {
+        if (!value) {
+          this.isErrorStatus = true;
+        } else {
+          this.isErrorStatus = false;
+        }
+        this.obj.Status = value;
+      },
+      get() {
+        return this.obj.Status;
+      },
+    },
+  },
   data() {
     return {
+      isError: false,
+      isErrorHireDate: false,
+      isErrorFromDate: false,
+      isErrorToDate: false,
+      isErrorWorkShift: false,
+      isErrorResionFor: false,
+      isErrorApprovedBy: false,
+      isErrorStatus: false,
       obj: Object,
       names: [
         {

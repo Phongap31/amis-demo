@@ -147,6 +147,39 @@
     height: 14px;
 }
 
+.mi-icon-error {
+    mask-image: url('../../assets/Resource/icon/Icon.569cfdf.svg');
+    width: 20px;
+    height: 20px;
+    mask-position: -242px -74px;
+    mask-repeat: no-repeat;
+    background-color: var(--input-error-border-color);
+    position: absolute;
+    right: 33px;
+    top: -1px;
+    z-index: 99;
+}
+
+.row-date .mi-icon-error {
+    right: 40px;
+}
+
+.row-textarea .mi-icon-error {
+    right: 10px;
+}
+
+.mi-icon-error~.dx-texteditor.dx-editor-outlined {
+    border-color: var(--input-error-border-color);
+}
+
+.mi-icon-error~div input {
+    border-color: var(--input-error-border-color);
+}
+
+.border-error {
+    border-color: var(--input-error-border-color);
+}
+
 
 /* .dx-dropdowneditor-icon::before {
     content: '\F078';

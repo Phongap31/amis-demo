@@ -105,7 +105,7 @@ export default {
         ID: 13,
         FullName: "",
         Position: "",
-        HireDate: new Date(),
+        HireDate: null,
         FromDate: null,
         ToDate: null,
         ApplyFor: "",
